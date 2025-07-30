@@ -15,7 +15,7 @@
 banditX@bandit:~$ [command used]
 ```
 - [What the command does]
-- [What flags/options you used and why]
+- [What flags/options I used and why]
 - [What the result was]
 
 **Step 2: [Next action]**
