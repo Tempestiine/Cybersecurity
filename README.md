@@ -8,8 +8,6 @@ Documenting my path from beginner to cybersecurity professional through hands-on
 
 I'm Khai Pham, a CS student who's starting his cybersecurity journey. This repository will document my thought process when tackling problems and issues in the broad field of cybersecurity.
 
-**You'll find:** My approach to challenges, what I learned, and why it matters for real security work.  
-
 ---
 
 ## Current Focus: OverTheWire Bandit
