@@ -29,33 +29,32 @@ Fortunately, I found [linuxcommand.org](https://linuxcommand.org/) (copyright Wi
 bandit0@bandit:~$ ls -l
 ```
 
-- `ls` lists files in the current directory.
-- The `-l` after `ls` is known as a flag, a special modifier that alters the behavior of commands in my own words, that changes `ls` to instead display files in long format, displaying detailed information of each file. If you type only `ls`, only the names of files appear, no extra information.
-- Result: I found one file named `readme`.
+- `ls` lists files in the current directory
+- The `-l` after `ls` is known as a flag, a special modifier that alters the behavior of commands in my own words, that changes `ls` to instead display files in long format, displaying detailed information of each file. If you type only `ls`, only the names of files appear, no extra information. I don't think adding the flag was necessary
+- Result: I found one file named `readme`
 
 **Step 2: Read the file**
-```bash
-banditX@bandit:~$ [command used]
-```
-- [Explanation]
-- [Result]
 
-[Add more steps as needed]
+```bash
+bandit0@bandit:~$ cat readme
+```
+- `cat` reads and displays the contents of a file
+- The file contained a welcome message and the password for the next level
+- Because I am following the rules from Bandit, I can't and won't post the actual password
 
 ## What I Learned
 
 ### New Commands/Concepts
-- **`command`**: [What it does and key options you learned]
-- **Concept**: [Any new Linux/security concept you discovered]
 
-### Mistakes & Lessons
-- [What didn't work and why]
-- [How I figured out the correct approach]
+1. `ls` lists contents in a directory
+   - `-l` flag provides detailed file information
+2. `cat` displays file contents directly in terminal
+3. I learned how to navigate and read files in the Linux system
 
 ## Real-World Applications
 
-### In Cybersecurity
-- **[Security area]**: [How this technique applies to real security work]
+- `ls -l` is important for examining file permissions during security assessments. I bet this command is great to ensure whether a file is secure and private or not.
+- `cat` is great for quickly viewing files. Using a quick Google search, I see a few forums of people using `cat` to prevent the modification of files. That's pretty smart.: [How this technique applies to real security work]
 - **[Another area]**: [Another practical application]
 
 ### Practical Uses
