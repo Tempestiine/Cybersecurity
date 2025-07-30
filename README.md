@@ -10,6 +10,8 @@ I'm Khai Pham, a CS student who's starting his cybersecurity journey. This repos
 
 **You'll find:** My approach to challenges, what I learned, and why it matters for real security work.  
 
+---
+
 ## Current Focus: OverTheWire Bandit
 
 Starting with Linux fundamentals because they're the foundation of cybersecurity work:
@@ -43,6 +45,8 @@ Each writeup answers three questions:
 3. How would I use this technique again?
 
 This helps me build lasting knowledge instead of just completing challenges.
+
+---
 
 ## Goal
 
