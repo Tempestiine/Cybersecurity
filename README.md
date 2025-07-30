@@ -21,7 +21,7 @@ Starting with Linux fundamentals because they're the foundation of cybersecurity
 ## Current Repository Structure
 
 ```
-├── overthewire/         # Linux fundamentals through Bandit
+├── OverTheWire: Bandit  # Linux fundamentals through Bandit
 └── README.md            # This file
 ```
 
