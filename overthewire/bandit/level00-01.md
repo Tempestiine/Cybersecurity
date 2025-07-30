@@ -19,7 +19,7 @@ Passwords also occasionally change. It is recommended to take notes on how to so
 
 The real struggle wasn't navigating this level but understanding how to use commands in Terminal effectively. Frankly, I'm a beginner. I was confused by the command syntax and how arguments worked in Terminal. The Ubuntu documentation provided on the Bandit website gave me a headache. Connecting to OverTheWire initially felt overwhelming. The Wikipedia page helped clarify some concepts, but I didn't fully grasp the semantics of how to type and use commands.
 
-Fortunately, I found `linuxcommand.org` (copyright William E. Shotts, Jr.), which explained Linux commands in a palatable way that finally made sense.
+Fortunately, I found [linuxcommand.org](https://linuxcommand.org/) (copyright William E. Shotts, Jr.) online, which explained Linux commands in a palatable way that finally made sense.
 
 ### Solution Process
 
