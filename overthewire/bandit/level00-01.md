@@ -54,23 +54,8 @@ bandit0@bandit:~$ cat readme
 ## Real-World Applications
 
 - `ls -l` is important for examining file permissions during security assessments. I bet this command is great to ensure whether a file is secure and private or not.
-- `cat` is great for quickly viewing files. Using a quick Google search, I see a few forums of people using `cat` to prevent the modification of files. That's pretty smart.: [How this technique applies to real security work]
-- **[Another area]**: [Another practical application]
-
-### Practical Uses
-- [How system administrators would use this]
-- [How this helps in troubleshooting or automation]
-
-## How I'll Use This Again
-- [When I'd use these commands in future challenges]
-- [What patterns or approaches I'll remember]
-- [How this builds toward more advanced techniques]
+- `cat` is great for quickly viewing files. Using a quick Google search, I see a few forums of people using `cat` to prevent the modification of files. That's pretty smart.
 
 ## Key Takeaway
-[One main lesson that summarizes what made this level valuable for my cybersecurity learning]
 
----
-
-**Tools Used:** [List main commands/tools]  
-**Difficulty:** [Personal rating and why]  
-**Time Spent:** [How long it took]
+I'm scared of how these small commands are very powerful. I have not scraped the surface of ethical hacking, but I feel vulnerable. Moreover, I was more surprised that I can do these commands on every computers inside my home. I bet I can apply these commands anywhere, but I'll choose to use the skills in a legal, ethical manner.
