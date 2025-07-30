@@ -23,15 +23,17 @@ Fortunately, I found `linuxcommand.org` (copyright William E. Shotts, Jr.), whic
 
 ### Solution Process
 
-**Step 1: [Action taken]**
-```bash
-banditX@bandit:~$ [command used]
-```
-- [What the command does]
-- [What flags/options you used and why]
-- [What the result was]
+**Step 1: List directory contents**
 
-**Step 2: [Next action]**
+```bash
+bandit0@bandit:~$ ls -l
+```
+
+- `ls` lists files in the current directory.
+- The `-l` after `ls` is known as a flag, a special modifier that alters the behavior of commands in my own words, that changes `ls` to instead display files in long format, displaying detailed information of each file. If you type only `ls`, only the names of files appear, no extra information.
+- Result: I found one file named `readme`.
+
+**Step 2: Read the file**
 ```bash
 banditX@bandit:~$ [command used]
 ```
