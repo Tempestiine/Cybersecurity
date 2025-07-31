@@ -3,9 +3,12 @@
 ## Challenge Description
 The password for the next level is stored in a file called - located in the home directory
 
-Commands you may need to solve this level: [list provided commands]
+Commands you may need to solve this level:
 
-[Include any tips or notes from the challenge page]
+`ls` `cd` `cat` `file` `du` `find`
+
+[Google Search for "dashed filename"](https://www.google.com/search?q=dashed+filename)
+[Advanced Bash-scripting Guide - Chapter 3 - Special Characters](https://linux.die.net/abs-guide/special-chars.html)
 
 ## My Experience
 
