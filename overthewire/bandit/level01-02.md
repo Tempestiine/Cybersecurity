@@ -1,7 +1,7 @@
 # [Bandit Level 01 → Level 02](https://overthewire.org/wargames/bandit/bandit2.html)
 
 ## Challenge Description
-[Copy the challenge description from the Bandit website]
+The password for the next level is stored in a file called - located in the home directory
 
 Commands you may need to solve this level: [list provided commands]
 
