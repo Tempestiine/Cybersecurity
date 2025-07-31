@@ -14,9 +14,10 @@ Commands you may need to solve this level:
 ## My Experience
 
 ### Initial Approach/Struggles
-[What was your first reaction? What confused you? What made it challenging? Be honest about your beginner struggles - this is valuable for other learners]
 
-[What resources did you use to understand concepts?]
+Beforehand, I was actually struggling with submitting a password to access this level. To save their resources, Bandit will not allow me to use `ssh` from the bandit0 account to connect to bandit1. Bandit told me to log out. I made a text file to contain my passwords to the bandit accounts and pasted the bandit1 password inside Kali Linux. When I pressed `ctrl` and `D`, I logged out of bandit0 and stayed in the terminal.
+
+At first, I thought no files existed. However, looking at Bandit, I deduced that there's a file literally named `-`, so I tried reading it.
 
 ### Solution Process
 
