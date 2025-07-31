@@ -1,4 +1,4 @@
-# [Bandit Level X → Level Y](https://overthewire.org/wargames/bandit/banditY.html)
+# [Bandit Level 01 → Level 02](https://overthewire.org/wargames/bandit/bandit2.html)
 
 ## Challenge Description
 [Copy the challenge description from the Bandit website]
