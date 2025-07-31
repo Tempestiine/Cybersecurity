@@ -8,6 +8,7 @@ Commands you may need to solve this level:
 `ls` `cd` `cat` `file` `du` `find`
 
 [Google Search for "dashed filename"](https://www.google.com/search?q=dashed+filename)
+
 [Advanced Bash-scripting Guide - Chapter 3 - Special Characters](https://linux.die.net/abs-guide/special-chars.html)
 
 ## My Experience
