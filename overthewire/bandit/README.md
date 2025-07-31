@@ -13,7 +13,7 @@ Bandit is a beginner-friendly wargame from OverTheWire that teaches basic Linux 
 - **Environment:** Kali Linux VM (Debian)
 - **Access Method:** SSH via terminal
 - **Initial Connection:** `ssh bandit0@bandit.labs.overthewire.org -p 2220`
-- **Password:** bandit0
+- **Password:** `bandit0`
 
 ## Learning Goals
 
