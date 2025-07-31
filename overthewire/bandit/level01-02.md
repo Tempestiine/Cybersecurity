@@ -21,11 +21,18 @@ At first, I thought no files existed. However, looking at Bandit, I deduced that
 
 ### Solution Process
 
-**Step 1: [What you did first]**
+**Step 1: Read the file**
+
 ```bash
-banditX@bandit:~$ [command you used]
+bandit1@bandit:~$ ls
+-
+bandit1@bandit:~$ cat -
+^C
+bandit1@bandit:~$ cat "-"
+^C
 ```
-- [Explain what the command does in your own words]
+- `ls` reveals the contents of a director
+- `cat` reads text from a file directly on terminal
 - [Explain any flags/options you used and why]
 - [Mention if the flag was necessary or just helpful]
 - Result: [What happened when you ran this]
