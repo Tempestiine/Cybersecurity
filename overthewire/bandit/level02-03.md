@@ -58,13 +58,13 @@ bandit2@bandit:~$ du -a
 - `du` estimates the amount of space each file and directory in the current directory uses. However, I used it just to also look up the names of the files. The `-a` flag tells Terminal to ensure every file is estimated. I got this from the [Ubuntu manual](https://manpages.ubuntu.com/manpages/noble/man1/du.1.html)
 - Result: The `du` command confirmed the exact filename, and the `find` command revealed that I could handle the spaces by enclosing the file name with special characters when using the `cat` command.
 
-**Step 3: Finding the solution**
+**Step 3: Solution!**
 ```bash
 bandit2@bandit:~$ cat '--spaces in this filename--'
 cat: unrecognized option '--spaces in this filename--'
 Try 'cat --help' for more information.
 bandit2@bandit:~$ cat "./--spaces in this filename--"
-[password displayed]
+[password]
 ```
 
 - Adding single quotation marks at the beginning and end of the file didn't work
@@ -73,10 +73,10 @@ bandit2@bandit:~$ cat "./--spaces in this filename--"
 ## What I Learned
 
 ### New Commands/Concepts
-1. **Handling filenames with spaces and special characters**: Use double quotes combined with `./` to treat the entire filename as one argument and avoid option parsing
-2. **`find` command**: Searches for files in directories, but struggles with spaces and special characters in filenames without proper quoting
+1. **Handling filenames with spaces and special characters**: Double quotes combined with `./` to treat the entire filename as one argument and avoid option parsing
+2. **`find` command**: Searches for files in directories
 3. **`du` command**: Shows disk usage, but the `-a` flag is useful for listing all files including their exact names
-4. **Command parsing**: Linux commands split arguments by spaces, and double dashes are interpreted as options, so filenames with both need special handling
+4. **Command parsing**: Linux commands split arguments by spaces in Terminal, and double dashes are interpreted as options, so filenames with both need special handling
 
 ## Real-World Applications
 - **System administration**: Many files in real systems have spaces in their names (especially in Windows environments or user-created files)
@@ -85,4 +85,4 @@ bandit2@bandit:~$ cat "./--spaces in this filename--"
 - **Log analysis**: Log files and configuration files sometimes have spaces in their names, requiring proper syntax to examine them
 
 ## Key Takeaway
-Spaces in filenames are more common than I initially thought, and learning to handle them properly is essential for any cybersecurity work. This level taught me that the command line treats spaces as argument separators, but proper quoting (with double quotes) tells the shell to treat the entire string as one filename. My programming background actually helped me make the connection - just like string literals in code, filenames with special characters need to be properly delimited.
+From background experience, many people use spaces in filenames, and they don't think like an expert in Cybersecurity or like a hacker. Spaces in filenames are more common, and learning to handle them properly is essential for any cybersecurity work.
