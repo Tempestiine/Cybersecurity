@@ -12,7 +12,7 @@ Commands you may need to solve this level:
 ## My Experience
 
 ### Initial Approach/Struggles
-I couldn't read the file because there were spaces in the filename. The `cat` command perceived the filename as separate arguments and parameters when I tried reading `--spaces in this filename--`. Additionally, the double dashes at the beginning made the command think it was an option flag.
+I couldn't read the file because there were spaces in the filename. The `cat` command perceived the filename as separate arguments and parameters when I tried reading `--spaces in this filename--`. Additionally, the double dashes at the beginning made the command think it was a flag.
 
 ### Solution Process
 
@@ -29,7 +29,8 @@ Try 'cat --help' for more information.
 - The double dashes at the beginning made `cat` think `--spaces` was a command option, causing an error
 
 **Step 2: Exploring other commands**
-I wanted to test the other commands provided by Bandit and see if they would shed any light after trying out `cat` one more time.
+I wanted to test the other commands provided by Bandit and see if they would shed any light.
+I'll try using `cat` one more time.
 
 ```bash
 bandit2@bandit:~$ cat ./--spaces in this filename--
@@ -55,7 +56,7 @@ bandit2@bandit:~$ du -a
 
 - `find` searches for files in the directory. The `*` searches for all filenames ([Shotts](https://linuxcommand.org/lc3_lts0050.php))
 - `du` estimates the amount of space each file and directory in the current directory uses. However, I used it just to also look up the names of the files. The `-a` flag tells Terminal to ensure every file is estimated. I got this from the [Ubuntu manual](https://manpages.ubuntu.com/manpages/noble/man1/du.1.html)
-- Result: The `du` command confirmed the exact filename, and I realized I need to handle the spaces properly
+- Result: The `du` command confirmed the exact filename, and the `find` command revealed that I could handle the spaces by enclosing the file name with special characters when using the `cat` command.
 
 **Step 3: Finding the solution**
 ```bash
