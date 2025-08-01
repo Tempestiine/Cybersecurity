@@ -1,82 +1,65 @@
-# [Bandit Level 2 → Level 3](https://overthewire.org/wargames/bandit/bandit3.html)
+# [Bandit Level 3 → Level 4](https://overthewire.org/wargames/bandit/bandit4.html)
 
 ## Challenge Description
-The password for the next level is stored in a file called `--spaces in this filename--` located in the home directory.
+The password for the next level is stored in a hidden file in the inhere directory.
 
 Commands you may need to solve this level:
 
 `ls` `cd` `cat` `file` `du` `find`
 
-[Google Search for "spaces in filename"](https://www.google.com/search?q=spaces+in+filename)
-
 ## My Experience
 
 ### Initial Approach/Struggles
-I couldn't read the file because there were spaces in the filename. The `cat` command perceived the filename as separate arguments and parameters when I tried reading `--spaces in this filename--`. Additionally, the double dashes at the beginning made the command think it was a flag.
+This challenge was pretty straightforward.
 
 ### Solution Process
 
-**Step 1: Attempt to read the file**
+**Step 1: Travel to the `inhere` directory**
+
 ```bash
-bandit2@bandit:~$ ls -l
+bandit3@bandit:~$ ls -l
 total 4
--rw-r----- 1 bandit3 bandit2 33 Jul 28 19:03 --spaces in this filename--
-bandit2@bandit:~$ cat --spaces in this filename--
-cat: unrecognized option '--spaces'
-Try 'cat --help' for more information.
-```
-- It seems like the file is specially named, just like the last level's file which contained the password
-- The double dashes at the beginning made `cat` think `--spaces` was a command option, causing an error
-
-**Step 2: Exploring other commands**
-I wanted to test the other commands provided by Bandit and see if they would shed any light.
-I'll try using `cat` one more time.
-
-```bash
-bandit2@bandit:~$ cat ./--spaces in this filename--
-cat: ./--spaces: No such file or directory
-cat: in: No such file or directory
-cat: this: No such file or directory
-cat: filename--: No such file or directory
+drwxr-xr-x 2 root root 4096 Jul 28 19:03 inhere
+bandit3@bandit:~$ cd inhere
+bandit3@bandit:~/inhere$ ls
+bandit3@bandit:~/inhere$ ls -l
+total 0
 ```
 
-```bash
-bandit2@bandit:~$ find *
-find: unknown predicate `--spaces in this filename--'
-```
+- `cd` transfers the user to a directory. In this case, I moved towards the `inhere` directory
+- Using `ls -l` won't work. As you can see above, the command doesn't reveal any hidden files.
+
+**Step 2: Access the hidden file**
 
 ```bash
-bandit2@bandit:~$ du -a
-4       ./.profile
-4       ./--spaces in this filename--
-4       ./.bashrc
-4       ./.bash_logout
-20      .
-```
-
-- `find` searches for files in the directory. The `*` searches for all filenames ([Shotts](https://linuxcommand.org/lc3_lts0050.php))
-- `du` estimates the amount of space each file and directory in the current directory uses. However, I used it just to also look up the names of the files. The `-a` flag tells Terminal to ensure every file is estimated. I got this from the [Ubuntu manual](https://manpages.ubuntu.com/manpages/noble/man1/du.1.html)
-- Result: The `du` command confirmed the exact filename, and the `find` command revealed that I could handle the spaces by enclosing the file name with special characters when using the `cat` command.
-
-**Step 3: Solution!**
-```bash
-bandit2@bandit:~$ cat '--spaces in this filename--'
-cat: unrecognized option '--spaces in this filename--'
-Try 'cat --help' for more information.
-bandit2@bandit:~$ cat "./--spaces in this filename--"
+bandit3@bandit:~/inhere$ ls -a
+.  ..  ...Hiding-From-You
+bandit3@bandit:~/inhere$ cat "./...Hiding-From-You"
 [password]
 ```
 
-- Adding single quotation marks at the beginning and end of the file didn't work
-- By a stroke of luck, I used double quotation marks instead and got the password to the next level. Honestly, I made a crazy connection to Java programming; a `String` literal uses quotation marks, and I wondered if putting double quotation marks would work. Java is everywhere!
+- I tried the flag `-a` because I wanted Terminal to consider all possible files
+- The `-a` flag tells Terminal to not ignore entries starting with `.`
+- On my screen, in Kali Linux and in Terminal, I noticed that directories have a bold, blue font while files are in plain white text. I noticed that `.` is a directory, which is the current directory. Above, the `..` actually refers to the parent directory, the place before I did `cd inhere`. This is handy for discerning what is a directory and what is a file name.
+
+```bash
+bandit3@bandit:~$ ls -l -a
+total 24
+drwxr-xr-x   3 root root 4096 Jul 28 19:03 .
+drwxr-xr-x 150 root root 4096 Jul 28 19:06 ..
+-rw-r--r--   1 root root  220 Mar 31  2024 .bash_logout
+-rw-r--r--   1 root root 3851 Jul 28 18:47 .bashrc
+drwxr-xr-x   2 root root 4096 Jul 28 19:03 inhere
+-rw-r--r--   1 root root  807 Mar 31  2024 .profile
+```
+
+- I was messing around, and I noticed that I can combine flags together. `ls -la` has the same effect according to [Joseph Gefroh](https://jgefroh.medium.com/a-beginners-guide-to-linux-command-line-56a8004e2471).
 
 ## What I Learned
 
 ### New Commands/Concepts
-1. **Handling filenames with spaces and special characters**: Double quotes combined with `./` to treat the entire filename as one argument and avoid option parsing
-2. **`find` command**: Searches for files in directories
-3. **`du` command**: Shows disk usage, but the `-a` flag is useful for listing all files including their exact names
-4. **Command parsing**: Linux commands split arguments by spaces in Terminal, and double dashes are interpreted as options, so filenames with both need special handling
+1. **Locating hidden files**: `ls -a` reveals files that can not be accessed with only `ls`
+2. **Combining flag options**: For effciency, I can combine flags in order to see the kind of information I want. ???
 
 ## Real-World Applications
 - **System administration**: Many files in real systems have spaces in their names (especially in Windows environments or user-created files)
