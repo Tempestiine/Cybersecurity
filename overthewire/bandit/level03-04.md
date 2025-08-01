@@ -31,7 +31,7 @@ total 0
 bandit3@bandit:~/inhere$ ls -a
 .  ..  ...Hiding-From-You
 bandit3@bandit:~/inhere$ cat "./...Hiding-From-You"
-[password displayed]
+[password]
 ```
 - I tried the flag `-a` because I wanted Terminal to show all possible files, including hidden ones
 - The `-a` flag tells Terminal to not ignore entries starting with `.`
