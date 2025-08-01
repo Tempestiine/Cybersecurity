@@ -1,52 +1,88 @@
-# [Bandit Level X → Level Y](https://overthewire.org/wargames/bandit/banditY.html)
+# [Bandit Level 2 → Level 3](https://overthewire.org/wargames/bandit/bandit3.html)
 
 ## Challenge Description
-[Copy the challenge description from the Bandit website]
+The password for the next level is stored in a file called `--spaces in this filename--` located in the home directory.
 
-Commands you may need to solve this level: [list provided commands]
+Commands you may need to solve this level:
 
-[Include any tips or notes from the challenge page]
+`ls` `cd` `cat` `file` `du` `find`
+
+[Google Search for "spaces in filename"](https://www.google.com/search?q=spaces+in+filename)
 
 ## My Experience
 
 ### Initial Approach/Struggles
-[What was your first reaction? What confused you? What made it challenging? Be honest about your beginner struggles - this is valuable for other learners]
-
-[What resources did you use to understand concepts?]
+I couldn't read the file because there were spaces in the filename. The `cat` command perceived the filename as separate arguments and parameters when I tried reading `--spaces in this filename--`. Additionally, the double dashes at the beginning made the command think it was a flag.
 
 ### Solution Process
 
-**Step 1: [What you did first]**
+**Step 1: Attempt to read the file**
 ```bash
-banditX@bandit:~$ [command you used]
+bandit2@bandit:~$ ls -l
+total 4
+-rw-r----- 1 bandit3 bandit2 33 Jul 28 19:03 --spaces in this filename--
+bandit2@bandit:~$ cat --spaces in this filename--
+cat: unrecognized option '--spaces'
+Try 'cat --help' for more information.
 ```
-- [Explain what the command does in your own words]
-- [Explain any flags/options you used and why]
-- [Mention if the flag was necessary or just helpful]
-- Result: [What happened when you ran this]
+- It seems like the file is specially named, just like the last level's file which contained the password
+- The double dashes at the beginning made `cat` think `--spaces` was a command option, causing an error
 
-**Step 2: [Next action]**
+**Step 2: Exploring other commands**
+I wanted to test the other commands provided by Bandit and see if they would shed any light.
+I'll try using `cat` one more time.
+
 ```bash
-banditX@bandit:~$ [command you used]
+bandit2@bandit:~$ cat ./--spaces in this filename--
+cat: ./--spaces: No such file or directory
+cat: in: No such file or directory
+cat: this: No such file or directory
+cat: filename--: No such file or directory
 ```
-- [Your explanation of the command]
-- [What the result was]
-- [Any notes about following Bandit rules, like not posting passwords]
 
-[Add more steps as needed]
+```bash
+bandit2@bandit:~$ find *
+find: unknown predicate `--spaces in this filename--'
+```
+
+```bash
+bandit2@bandit:~$ du -a
+4       ./.profile
+4       ./--spaces in this filename--
+4       ./.bashrc
+4       ./.bash_logout
+20      .
+```
+
+- `find` searches for files in the directory. The `*` searches for all filenames ([Shotts](https://linuxcommand.org/lc3_lts0050.php))
+- `du` estimates the amount of space each file and directory in the current directory uses. However, I used it just to also look up the names of the files. The `-a` flag tells Terminal to ensure every file is estimated. I got this from the [Ubuntu manual](https://manpages.ubuntu.com/manpages/noble/man1/du.1.html)
+- Result: The `du` command confirmed the exact filename, and the `find` command revealed that I could handle the spaces by enclosing the file name with special characters when using the `cat` command.
+
+**Step 3: Solution!**
+```bash
+bandit2@bandit:~$ cat '--spaces in this filename--'
+cat: unrecognized option '--spaces in this filename--'
+Try 'cat --help' for more information.
+bandit2@bandit:~$ cat "./--spaces in this filename--"
+[password]
+```
+
+- Adding single quotation marks at the beginning and end of the file didn't work
+- By a stroke of luck, I used double quotation marks instead and got the password to the next level. Honestly, I made a crazy connection to Java programming; a `String` literal uses quotation marks, and I wondered if putting double quotation marks would work. Java is everywhere!
 
 ## What I Learned
 
 ### New Commands/Concepts
-1. `command` [brief description of what it does]
-   - [Key flags or options you learned]
-2. [Any other commands or concepts]
-3. [Broader learning about Linux/security]
+1. **Handling filenames with spaces and special characters**: Double quotes combined with `./` to treat the entire filename as one argument and avoid option parsing
+2. **`find` command**: Searches for files in directories
+3. **`du` command**: Shows disk usage, but the `-a` flag is useful for listing all files including their exact names
+4. **Command parsing**: Linux commands split arguments by spaces in Terminal, and double dashes are interpreted as options, so filenames with both need special handling
 
 ## Real-World Applications
-- [How this command helps in security work - be specific]
-- [Quick research insight about how professionals use this]
-- [Your thoughts on the practical applications]
+- **System administration**: Many files in real systems have spaces in their names (especially in Windows environments or user-created files)
+- **Scripting and automation**: When writing security scripts, you must handle filenames with spaces properly or risk missing important files
+- **Digital forensics**: Investigators often encounter files with unusual names (including spaces) that suspects use to try hiding evidence
+- **Log analysis**: Log files and configuration files sometimes have spaces in their names, requiring proper syntax to examine them
 
 ## Key Takeaway
-[Your personal reflection on what this level taught you about cybersecurity, hacking, or your own learning journey. This is where your personality and genuine reactions shine through]
+From background experience, many people use spaces in filenames, and they don't think like an expert in Cybersecurity or like a hacker. Spaces in filenames are more common, and learning to handle them properly is essential for any cybersecurity work.
