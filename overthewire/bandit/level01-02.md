@@ -33,32 +33,27 @@ bandit1@bandit:~$ cat "-"
 ```
 - `ls` reveals the contents of a director
 - `cat` reads text from a file directly on terminal
-- [Explain any flags/options you used and why]
-- [Mention if the flag was necessary or just helpful]
-- Result: [What happened when you ran this]
+- `^C` is a signal to terminal to terminate a process. Likewise, in Java and Python, `break` terminates a process. This is created by pressing both `ctrl` and `D`
+- I used `^C` because I think there was something wrong with Terminal. I was stuck using the command, and Terminal seemed to have paused itself.
+- Result: I did a Google search on how to read "dashed filenames."
 
-**Step 2: [Next action]**
+**Step 2: Try Again**
+
 ```bash
-banditX@bandit:~$ [command you used]
+bandit1@bandit:~$ cat ./-
 ```
-- [Your explanation of the command]
-- [What the result was]
-- [Any notes about following Bandit rules, like not posting passwords]
-
-[Add more steps as needed]
+- According to [Shotts](https://linuxcommand.org/lc3_lts0020.php), "the `.` notation refers to the working directory itself", and when running most commands, "./" is implied at the beginning.
+- Basically, the `.` tells Terminal to look at the directory we are currently located, which is supposed to seem arbitrary but has an important use. Likewise, in Java programming, some constructors implicity call `super()` first while instance variables and called instance methods within instance methods have `this.` implicitly added at the beginning.
+- I ran the command above and obtained the password to the next level.
 
 ## What I Learned
 
 ### New Commands/Concepts
-1. `command` [brief description of what it does]
-   - [Key flags or options you learned]
-2. [Any other commands or concepts]
-3. [Broader learning about Linux/security]
+1. I have to rework the `cat` command when trying to read files with special characters.
+2. Some commands implicitly add `./` at the beginning.
 
 ## Real-World Applications
-- [How this command helps in security work - be specific]
-- [Quick research insight about how professionals use this]
-- [Your thoughts on the practical applications]
+- ? N/A?
 
 ## Key Takeaway
-[Your personal reflection on what this level taught you about cybersecurity, hacking, or your own learning journey. This is where your personality and genuine reactions shine through]
+- Naming a file with special characters does not protect hackers from accessing private content.
