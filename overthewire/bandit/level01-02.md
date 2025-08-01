@@ -51,7 +51,7 @@ bandit1@bandit:~$ cat ./-
 ## Real-World Applications
 - **Security assessment**: Attackers might try to hide malicious files using special characters, thinking they're harder to access
 - **System administration**: Understanding how to handle files with unusual names is crucial when cleaning up systems or investigating suspicious activity
-- **File forensics**: During incident response, you might encounter files with special characters that require specific techniques to examine
+- **File forensics**: You might encounter files with special characters that require specific techniques to examine
 
 ## Key Takeaway
-Naming a file with special characters does not protect against hackers accessing private content. In fact, understanding how to handle these edge cases is an essential skill for cybersecurity professionals. This level taught me that the command line has specific rules for handling special characters, and learning these rules makes me more capable of navigating any system I encounter.
+Naming a file with special characters does not protect against hackers accessing private content. In fact, understanding how to handle these cases is an essential skill for cybersecurity professionals. This level taught me that the command line has specific rules for handling special characters, and learning these rules makes me more capable of navigating any system I encounter.
