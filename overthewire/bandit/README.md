@@ -24,4 +24,5 @@ Bandit is a beginner-friendly wargame from OverTheWire that teaches basic Linux 
 
 ## Progress
 
-Individual level writeups document my approach, what I learned, and how each technique applies to cybersecurity.
+- Individual level writeups will document my approach, what I learned, and how each technique applies to cybersecurity.
+- However, the structure of each writeup will change slightly and adapt to the problem thrown by Bandit. Though, I'll ensure each writeup is completely readable and understandable.
