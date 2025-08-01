@@ -41,20 +41,42 @@ cat: filename--: No such file or directory
 bandit2@bandit:~$ find *
 find: unknown predicate `--spaces in this filename--'
 ```
+```bash
+bandit2@bandit:~$ du -a
+4       ./.profile
+4       ./--spaces in this filename--
+4       ./.bashrc
+4       ./.bash_logout
+20      .
+```
+--
 
-- `find` searches for any 
+- `find` searches for any files in the directory. The `*` searches for all filenames. [Shotts](https://linuxcommand.org/lc3_lts0050.php).
+- `du` estimates the amount of space each file and directory in the current directory uses. However, I used it just to also look up the names of the files. The `-a` flag tells Terminal to ensure every file is estimated. I got this from the [Ubuntu manual](https://manpages.ubuntu.com/manpages/noble/man1/du.1.html)
+- Result: In order to read the file I want, it seems like I need to add special characters at the beginning and end of it.
 
+**Step 2: One More Time**
+```bash
+bandit2@bandit:~$ cat '--spaces in this filename--'
+cat: unrecognized option '--spaces in this filename--'
+Try 'cat --help' for more information.
+bandit2@bandit:~$ cat "./--spaces in this filename--"
+```
+
+- Adding single quotation marks at the beginning and end of the file did nothing
+- By a stroke of luck, I used double quotation marks instead and got the password to the next level. Honestly, I made a crazy connection to Java programming; A `String` literal uses quotations marks, and I wondered if I putting double quotation marks would work. Java is everywhere
+ 
 ## What I Learned
 
 ### New Commands/Concepts
-1. I have to modify the `cat` command when trying to read files with special characters
-2. Some commands implicitly add `./` at the beginning, but when dealing with special characters, I need to be explicit
-3. The `-` character has special meaning in Linux (represents stdin/stdout), so it can't be used directly as a filename in commands
+??
+'find', 'du' 'du -a'
+1. I can read files with spaces using double quotation marks.
+2. I can accurately search through files with the 'find' command
+   
 
 ## Real-World Applications
-- **Security assessment**: Attackers might try to hide malicious files using special characters, thinking they're harder to access
-- **System administration**: Understanding how to handle files with unusual names is crucial when cleaning up systems or investigating suspicious activity
-- **File forensics**: You might encounter files with special characters that require specific techniques to examine
+?
 
 ## Key Takeaway
-Naming a file with special characters does not protect against hackers accessing private content. In fact, understanding how to handle these cases is an essential skill for cybersecurity professionals. This level taught me that the command line has specific rules for handling special characters, and learning these rules makes me more capable of navigating any system I encounter.
+?
