@@ -62,10 +62,10 @@ drwxr-xr-x   2 root root 4096 Jul 28 19:03 inhere
 2. **Combining flag options**: For effciency, I can combine flags in order to see the kind of information I want. ???
 
 ## Real-World Applications
-- **System administration**: Many files in real systems have spaces in their names (especially in Windows environments or user-created files)
-- **Scripting and automation**: When writing security scripts, you must handle filenames with spaces properly or risk missing important files
-- **Digital forensics**: Investigators often encounter files with unusual names (including spaces) that suspects use to try hiding evidence
-- **Log analysis**: Log files and configuration files sometimes have spaces in their names, requiring proper syntax to examine them
+- **System administration**: Sometimes, you can't give access to files to everyday people, and you need to hide it
+- **Scripting and automation**: When writing security scripts, caution can be acted around hidden files and programs can alert people for those hidden files which are suspcious.
+- **Digital forensics**: Good investigators always check hidden files because suspects could try to hide evidence.
+- **Log analysis**: N/A?
 
 ## Key Takeaway
-From background experience, many people use spaces in filenames, and they don't think like an expert in Cybersecurity or like a hacker. Spaces in filenames are more common, and learning to handle them properly is essential for any cybersecurity work.
+It's important to understand how to search for hidden files and how to manipulate them. It's great for looking for any hidden information and doing investigations. ??
