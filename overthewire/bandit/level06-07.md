@@ -1,53 +1,38 @@
 # [Bandit Level 6 → Level 7](https://overthewire.org/wargames/bandit/bandit6.html)
 
 ## Challenge Description
-The password for the next level is stored in a file somewhere under the inhere directory and has all of the following properties:
+The password for the next level is stored somewhere on the server and has all of the following properties:
 
-- human-readable
-- 1033 bytes in size
-- not executable
+- owned by user bandit7
+- owned by group bandit6
+- 33 bytes in size
 
 Commands you may need to solve this level:
-`ls` `cd` `cat` `file` `du` `find`
+`ls` `cd` `cat` `file` `du` `find` `grep`
 
 ## My Experience
 
 ### Initial Approach/Struggles
-There are twenty directories in the `inhere` directory, each packed with misleading files and content. However, one file holds the password. I had a gut feeling that the `find` command would prove useful for this challenge, especially with all the specific criteria given.
+Understanding the Challenge Description gave me a headache. When I first tried to find the file in the directory that I was situated in, there were no files. In addition, Bandit recommended the use of `grep`, which now seems like a red herring because I didn't use it.
 
 ### Solution Process
 
-**Step 1: Navigate to the `inhere` directory and assess the scope**
+**Step 1: Find the right file**
+
 ```bash
-bandit5@bandit:~$ ls
-inhere
-bandit5@bandit:~$ cd inhere
-bandit5@bandit:~/inhere$ ls -la
-total 88
-drwxr-x--- 22 root bandit5 4096 Jul 28 19:03 .
-drwxr-xr-x  3 root root    4096 Jul 28 19:03 ..
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere00
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere01
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere02
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere03
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere04
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere05
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere06
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere07
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere08
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere09
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere10
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere11
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere12
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere13
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere14
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere15
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere16
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere17
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere18
-drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere19
+bandit6@bandit:~$ ls -las
+total 20
+4 drwxr-xr-x   2 root root 4096 Jul 28 19:03 .
+4 drwxr-xr-x 150 root root 4096 Jul 28 19:06 ..
+4 -rw-r--r--   1 root root  220 Mar 31  2024 .bash_logout
+4 -rw-r--r--   1 root root 3851 Jul 28 18:47 .bashrc
+4 -rw-r--r--   1 root root  807 Mar 31  2024 .profile
 ```
 
+- Above, there are no files that are connected with this challenge.
+- Afterward, I messed around with `grep`. `grep` is a sophisticated version of `find` which insteads looks for specific patterns of data or information inside files. However, the challenge description didn't provide a pattern that I was looking for. It only provided file permissions.
+- At this point, I searched on Google: "How to navigate and read files on servers in Linux Command Line with find?" and hints on the Bandit Level
+- This sounds fourth-dimensional or meta. What I learned is that, apparently, when you're starting out in Bandit, you're set in a subdirectory. You're not even at the root! overthewire is like one big computer, and the home directory has all of its challenges: bandit, leviathan, and narnia. And you're supposed to find the password located somewhere on the server or machine??
 **Step 2: Explore one directory to understand the challenge scope**
 ```bash
 bandit5@bandit:~/inhere$ cd maybehere00
