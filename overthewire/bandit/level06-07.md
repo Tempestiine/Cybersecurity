@@ -81,23 +81,17 @@ successful results to stdout (1)
 
 error messages (like "Permission denied") to stderr (2)
 
+ and the arrow `>` means...
+
+In shell scripting (like Bash), the > symbol redirects output of a command to a file or another place, instead of printing it to the screen (your terminal).
+
+/dev/null is a special device that deletes everything inside of it. Like a garbage collector. Haha java pun
 
 
-**Step 3: Use `find` with specific criteria**
+**Step 3: Get the Password**
 ```bash
-bandit5@bandit:~/inhere$ cd ..
-bandit5@bandit:~/inhere$ find * -readable
-maybehere00
-maybehere00/-file2
-maybehere00/.file3
-maybehere00/-file1
-maybehere00/-file3
-maybehere00/spaces file2
-[dozens of more files listed]
-bandit5@bandit:~/inhere$ find * -readable -size 1033c
-maybehere07/.file2
-bandit5@bandit:~/inhere$ cat ./maybehere07/.file2
-[password displayed]
+bandit6@bandit:/var/lib/dpkg/info$ find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null
+/var/lib/dpkg/info/bandit7.password
 ```
 
 - `find` searches through the current working directory and all subdirectories for files
