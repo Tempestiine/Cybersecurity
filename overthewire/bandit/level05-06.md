@@ -1,7 +1,8 @@
 # [Bandit Level 5 → Level 6](https://overthewire.org/wargames/bandit/bandit6.html)
 
 ## Challenge Description
-The password for the next level is stored in a file somewhere under the inhere directory and has all of the following properties:
+The password for the next level is stored in a file somewhere under the inhere directory and has all of the 
+has the following properties:
 
           human-readable
           1033 bytes in size
@@ -14,7 +15,7 @@ Commands you may need to solve this level:
 ## My Experience
 
 ### Initial Approach/Struggles
-Trying to filter my search for human-readable files proved difficult. I knew what I wanted to accomplish, but it was hard to find the right command to execute my idea. I could use brute force to check each file individually, but realistically I wouldn't learn much if I cheated.
+There are twenty directories, each packed with misleading files and content. However, one file holds the password. I know I have to use the `find` command
 
 ### Solution Process
 
