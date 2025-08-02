@@ -81,23 +81,23 @@ bandit5@bandit:~/inhere/maybehere07$ cat ./.file2
 - `find` searches through the current working directory and subdirectories for files.
 - `-readable` is a flag that modifies the `find` command to look for human-readable files.
 - Because there were a bunch of readable files, I needed to add more specifications and parameters.
-- `-size` is a flag (?) that customizes `find` to look for files with specific byte sizes. Above, I requested for files with a size of 1033 bytes.
+- `-size` is a flag (?) that customizes `find` to look for files with specific byte sizes. Above, I requested for files with a size of 1033 bytes. [PS ADD MORE information about how the size flag or option or something is uniquely displayed]
 
-
-**Step 2: Attempt different approaches to identify the human-readable file**
 
 ## What I Learned
 
 ### New Commands/Concepts
-1. **File type identification**: The `file` command can distinguish between different file formats, even when they appear similar
-2. **Wildcard usage**: The `*` character allows operations on multiple files simultaneously
-3. **Efficient searching**: Instead of checking files individually, using tools like `file` can quickly analyze multiple files
+1. **File type identification**: The `find` command allows users to obtain desired files efficiently.
+? [Search on Google for more]
 
 ## Real-World Applications
-- **Digital forensics**: Investigators need to quickly identify file types when examining seized devices, as malicious files are often disguised or have misleading extensions. I can imagine using it to avoid possible red herrings
-- **System administration**: When troubleshooting systems, administrators need to distinguish between configuration files (text) and data files
-- **Malware analysis**: Security professionals use file type identification to determine how to properly analyze suspicious files
-- **Data recovery**: When recovering corrupted files, identifying the actual file type helps determine the appropriate recovery method
+? What I imagine it could be.
+
+On computers, there are hundreds of files, and being able to be selective and pick the one you want is very critical.
+If you're a hacker, you would scope for files with sensitive information. Or, if you're a cybersecurity specialist, you would try to protect those files and eliminate vulnerabilities.
+If you're troubleshooting something, you would want to look at files containing data and configuration.
+When gathering evidence, you would only want to look for necssary files.
+
 
 ## Key Takeaway
-Understanding file types and having the right tools to identify them is vital in cybersecurity work. The `file` command is an essential tool for quickly analyzing unknown files, a skill I could use in security analysis and system administration. Learning to work efficiently with multiple files using wildcards also saves significant time when dealing with large datasets.
+Learning to work efficiently with multiple files using the `file` command also saves significant time when dealing with large datasets.
