@@ -3,32 +3,10 @@
 Learning Linux fundamentals and command-line security through hands-on challenges.
 
 ## What is Bandit?
-```bash
-                         _                     _   _
-                        | |__   __ _ _ __   __| (_) |_ 
-                        | '_ \ / _` | '_ \ / _` | | __|
-                        | |_) | (_| | | | | (_| | | |_ 
-                        |_.__/ \__,_|_| |_|\__,_|_|\__|
-```
 
 Bandit is a beginner-friendly wargame from OverTheWire that teaches basic Linux skills essential for cybersecurity. Each level involves finding a password hidden somewhere on the system using various command-line tools and techniques.
 
 **Official Site:** [overthewire.org/wargames/bandit](https://overthewire.org/wargames/bandit/)
-```bash
-      ,----..            ,----,          .---.
-     /   /   \         ,/   .`|         /. ./|
-    /   .     :      ,`   .'  :     .--'.  ' ;
-   .   /   ;.  \   ;    ;     /    /__./ \ : |
-  .   ;   /  ` ; .'___,/    ,' .--'.  '   \' .
-  ;   |  ; \ ; | |    :     | /___/ \ |    ' '
-  |   :  | ; | ' ;    |.';  ; ;   \  \;      :
-  .   |  ' ' ' : `----'  |  |  \   ;  `      |
-  '   ;  \; /  |     '   :  ;   .   \    .\  ;
-   \   \  ',  /      |   |  '    \   \   ' \ |
-    ;   :    /       '   :  |     :   '  |--"
-     \   \ .'        ;   |.'       \   \ ;
-  www. `---` ver     '---' he       '---" ire.org
-```
 
 ## My Setup (Level 0)
 
