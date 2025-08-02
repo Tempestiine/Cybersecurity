@@ -68,7 +68,20 @@ bandit6@bandit:~$ find / -type f -user bandit7 -group bandit6 -size 33c | grep -
 - Looking in the root directory worked, but I had a bunch of unnessary files.
 - When I specified it to what the challenge description wanted, I couldn't access a lot of the files. I tried using `-v` flag to use the inverse of `grep` and to instead choose files without "Permission denied", but that didn't work.
 - I had to do a google search to find the answer on how to remove all of the Permissions denied.
-- Apparently, the command I need is ```find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null```
+- Apparently, I need to add ```2>/dev/null``` to the end of the Linux command.
+
+---
+
+Search up how to add tables in markdown
+0	stdin	Standard input
+1	stdout	Standard output
+2	stderr	Standard error output
+
+successful results to stdout (1)
+
+error messages (like "Permission denied") to stderr (2)
+
+
 
 **Step 3: Use `find` with specific criteria**
 ```bash
