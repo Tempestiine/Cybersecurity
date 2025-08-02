@@ -33,7 +33,7 @@ total 20
 - Afterward, I messed around with `grep`. `grep` is a sophisticated version of `find` which insteads looks for specific patterns of data or information inside files. However, the challenge description didn't provide a pattern that I was looking for. It only provided file permissions.
 - At this point, I searched on Google: "How to navigate and read files on servers in Linux Command Line with find?" and hints on the Bandit Level
 - This sounds fourth-dimensional or meta. What I learned is that, apparently, when you're starting out in Bandit, you're set in a subdirectory. You're not even at the root! overthewire is like one big computer, and the home directory has all of its challenges: bandit, leviathan, and narnia. And you're supposed to find the password located somewhere on the server or machine?? [explain this better please] or is the home directory the users?? I'm lost.
-- I need to use `find /` to use the root directory of overthewirelabs.org?
+- I need to use `find /` to use the root directory of overthewirelabs.org? oml
 
 **Step 2: Find the right file**
 ```bash
@@ -66,7 +66,9 @@ bandit6@bandit:~$ find / -type f -user bandit7 -group bandit6 -size 33c | grep -
 ```
 
 - Looking in the root directory worked, but I had a bunch of unnessary files.
-- When I specified it to what the challenge description wanted, I couldn't access a lot of the files. I tried 
+- When I specified it to what the challenge description wanted, I couldn't access a lot of the files. I tried using `-v` flag to use the inverse of `grep` and to instead choose files without "Permission denied", but that didn't work.
+- I had to do a google search to find the answer on how to remove all of the Permissions denied.
+- Apparently, the command I need is ```find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null```
 
 **Step 3: Use `find` with specific criteria**
 ```bash
