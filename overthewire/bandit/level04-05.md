@@ -1,67 +1,83 @@
 # [Bandit Level 4 → Level 5](https://overthewire.org/wargames/bandit/bandit5.html)
 
 ## Challenge Description
-The password for the next level is stored in a hidden file in the inhere directory.
+The password for the next level is stored in the only human-readable file in the inhere directory.
 
 Commands you may need to solve this level:
 `ls` `cd` `cat` `file` `du` `find`
 
+ Tip: if your terminal is messed up, try the “reset” command.
+
 ## My Experience
 
 ### Initial Approach/Struggles
-This challenge was pretty straightforward compared to the previous levels. The main thing I needed to figure out was how to find hidden files in Linux.
+Trying to filter my search for human-readable files proved difficult. I know what I want, but it was hard to find the right command to execute my idea. I could use brute force to find the password, but realistically I won't learn much if I cheat.
 
 ### Solution Process
 
-**Step 1: Navigate to the `inhere` directory**
+**Step 1: Navigate to the `inhere` directory and identify the human-readable file**
 ```bash
-bandit3@bandit:~$ ls -l
-total 4
-drwxr-xr-x 2 root root 4096 Jul 28 19:03 inhere
-bandit3@bandit:~$ cd inhere
-bandit3@bandit:~/inhere$ ls
-bandit3@bandit:~/inhere$ ls -l
-total 0
+bandit4@bandit:~$ ls
+inhere
+bandit4@bandit:~$ cd inhere
+bandit4@bandit:~/inhere$ ls
+-file00  -file01  -file02  -file03  -file04  -file05  -file06  -file07  -file08  -file09
 ```
-- `cd` transfers the user to a directory. In this case, I moved to the `inhere` directory
-- Using `ls` and `ls -l` didn't work. As you can see above, the commands don't reveal any hidden files
 
-**Step 2: Find and access the hidden file**
 ```bash
-bandit3@bandit:~/inhere$ ls -a
-.  ..  ...Hiding-From-You
-bandit3@bandit:~/inhere$ cat "./...Hiding-From-You"
+bandit4@bandit:~/inhere$ ls -h
+-file00  -file01  -file02  -file03  -file04  -file05  -file06  -file07  -file08  -file09
+bandit4@bandit:~/inhere$ cat ./-file00
+,9KL��+ӑ�'��,�BtZ�@P0N��Q��
+bandit4@bandit:~/inhere$ ls -l -s -h
+total 40K
+4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file00
+4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file01
+4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file02
+4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file03
+4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file04
+4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file05
+4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file06
+4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file07
+4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file08
+4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file09
+bandit4@bandit:~/inhere$ find * -readable
+find: unknown predicate `-file00'
+```
+
+- For some reason, the `-h` flag did not reveal the human-readable file
+- Curious, I looked at the first file with `cat`, and it had a bunch of jargon
+- I tried `ls -l`, but I didn't see any unique information among the files
+- The `find` command didn't provide much either. `find` searches through files through the directory, and I wanted Terminal to identify readable ones.
+
+```bash
+bandit4@bandit:~/inhere$ file ./*
+./-file00: data
+./-file01: data
+./-file02: data
+./-file03: data
+./-file04: data
+./-file05: data
+./-file06: data
+./-file07: ASCII text
+./-file08: data
+./-file09: data
+bandit4@bandit:~/inhere$ cat ./-file07
 [password]
 ```
-- I tried the flag `-a` because I wanted Terminal to show all possible files, including hidden ones
-- The `-a` flag tells Terminal to not ignore entries starting with `.`
-- On my screen in Kali Linux Terminal, I noticed that directories have a bold, blue font while files are in plain white text. I noticed that `.` is a directory representing the current directory, and `..` refers to the parent directory (the place before I did `cd inhere`). This visual distinction is handy for discerning what is a directory and what is a filename
 
-**Step 3: Exploring flag combinations**
-```bash
-bandit3@bandit:~$ ls -la
-total 24
-drwxr-xr-x   3 root root 4096 Jul 28 19:03 .
-drwxr-xr-x 150 root root 4096 Jul 28 19:06 ..
--rw-r--r--   1 root root  220 Mar 31  2024 .bash_logout
--rw-r--r--   1 root root 3851 Jul 28 18:47 .bashrc
-drwxr-xr-x   2 root root 4096 Jul 28 19:03 inhere
--rw-r--r--   1 root root  807 Mar 31  2024 .profile
-```
-- I was experimenting and discovered that I can combine flags together. `ls -la` has the same effect as `ls -l -a` according to [Joseph Gefroh](https://jgefroh.medium.com/a-beginners-guide-to-linux-command-line-56a8004e2471)
-- Above, you can see that the files `.bashrc` and `.profile` are hidden, but I believe they have nothing to do with completing the Bandit challenge. I think they're hidden to prevent confusion.
+- `file` spotlighted `-file07` as an `ASCII text` file. Quickly, I read it with `cat` and obtained the password.
+- `file` is a command that determines the file type. The asterisk (`*`) after file is a wildcard, which is a special character that allows me to select groups of files.
 
 ## What I Learned
 
 ### New Commands/Concepts
-1. **Hidden files in Linux**: Files starting with `.` are hidden and require the `-a` flag to be visible
-2. **`cd` command**: Changes directories, essential for navigating the file system
-3. **Combining command flags**: Flags can be combined for efficiency (e.g., `ls -la` instead of `ls -l -a`)
-4. **Directory navigation**: Understanding `.` (current directory) and `..` (parent directory) concepts
-5. **Visual cues**: Terminal color coding helps distinguish between files and directories
+1. **File appearances**: Data files and ASCII files are different, but they appear similar
+2. **`file` command**: Great for identifying file types
+   ?
 
 ## Real-World Applications
-- **System configuration**: Many important configuration files in Linux are hidden (like `.bashrc`, `.profile`) to keep the home directory clean
+- **System configuration**: ? Guessing. Many config files hold various data for programs, and it's hard to discern them from regularing text files.
 - **Security investigations**: Hidden files are commonly used to store malicious scripts or files that attackers don't want easily discovered
 - **System administration**: Administrators need to check hidden files when troubleshooting user environments or investigating system issues
 - **Software development**: Development tools often store configuration in hidden directories (like `.git`, `.vscode`) that need to be accessed for troubleshooting
