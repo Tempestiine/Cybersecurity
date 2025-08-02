@@ -1,4 +1,4 @@
-# [Bandit Level 5 → Level 6](https://overthewire.org/wargames/bandit/bandit6.html)
+# [Bandit Level 6 → Level 7](https://overthewire.org/wargames/bandit/bandit6.html)
 
 ## Challenge Description
 The password for the next level is stored in a file somewhere under the inhere directory and has all of the following properties:
