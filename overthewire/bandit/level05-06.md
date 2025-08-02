@@ -15,62 +15,76 @@ Commands you may need to solve this level:
 ## My Experience
 
 ### Initial Approach/Struggles
-There are twenty directories, each packed with misleading files and content. However, one file holds the password. I know I have to use the `find` command
+There are twenty directories in the `inhere` directoy, each packed with misleading files and content. However, one file holds the password. I had a gut feeling that the `find` command will prove useful
 
 ### Solution Process
 
-**Step 1: Navigate to the `inhere` directory and explore the files**
+**Step 1: Navigate to the `inhere` directory and find the right file**
 ```bash
 bandit4@bandit:~$ ls
 inhere
 bandit4@bandit:~$ cd inhere
-bandit4@bandit:~/inhere$ ls
--file00  -file01  -file02  -file03  -file04  -file05  -file06  -file07  -file08  -file09
+bandit5@bandit:~/inhere$ ls -la
+total 88
+drwxr-x--- 22 root bandit5 4096 Jul 28 19:03 .
+drwxr-xr-x  3 root root    4096 Jul 28 19:03 ..
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere00
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere01
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere02
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere03
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere04
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere05
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere06
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere07
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere08
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere09
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere10
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere11
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere12
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere13
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere14
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere15
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere16
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere17
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere18
+drwxr-x---  2 root bandit5 4096 Jul 28 19:03 maybehere19
 ```
 
-**Step 2: Attempt different approaches to identify the human-readable file**
-```bash
-bandit4@bandit:~/inhere$ ls -h
--file00  -file01  -file02  -file03  -file04  -file05  -file06  -file07  -file08  -file09
-bandit4@bandit:~/inhere$ cat ./-file00
-,9KL��+ӑ�'��,�BtZ�@P0N��Q��
-bandit4@bandit:~/inhere$ ls -lsh
-total 40K
-4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file00
-4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file01
-4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file02
-4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file03
-4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file04
-4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file05
-4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file06
-4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file07
-4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file08
-4.0K -rw-r----- 1 bandit5 bandit4 33 Jul 28 19:03 -file09
-```
-- The `-h` flag didn't reveal which file was human-readable
-- When I tested the first file with `cat`, it displayed random characters and symbols
-- Using `ls -lsh` showed that all files have the same size and permissions, so there were no obvious differences
+Being curious, I wanted to see what I would find if I looked in the first directory.
 
-**Step 3: Use the `file` command to identify file types**
 ```bash
-bandit4@bandit:~/inhere$ file ./*
-./-file00: data
-./-file01: data
-./-file02: data
-./-file03: data
-./-file04: data
-./-file05: data
-./-file06: data
-./-file07: ASCII text
-./-file08: data
-./-file09: data
-bandit4@bandit:~/inhere$ cat ./-file07
+bandit5@bandit:~/inhere$ cd maybehere00
+bandit5@bandit:~/inhere/maybehere00$ ls
+-file1  -file2  -file3  spaces file1  spaces file2  spaces file3
+bandit5@bandit:~/inhere/maybehere00$ cat ./file1
+cat: ./file1: No such file or directory
+```
+
+Brute force does not look like the best and effective solution. I need to use `file`.
+
+```bash
+bandit5@bandit:~/inhere$ find * -readable
+maybehere00
+maybehere00/-file2
+maybehere00/.file3
+maybehere00/-file1
+maybehere00/-file3
+maybehere00/spaces file2
+[dozens of more files listed]
+bandit5@bandit:~/inhere$ find * -readable -size 1033c
+maybehere07/.file2
+bandit5@bandit:~/inhere$ cd maybehere07
+bandit5@bandit:~/inhere/maybehere07$ cat ./.file2
 [password displayed]
 ```
-- The `file` command identified `-file07` as an `ASCII text` file while all others were labeled as `data`
-- `file` is a command that determines the file type of each file
-- The asterisk (`*`) is a wildcard character that allows me to select all files in the directory at once
-- I quickly read the ASCII text file with `cat` and obtained the password
+
+- `find` searches through the current working directory and subdirectories for files.
+- `-readable` is a flag that modifies the `find` command to look for human-readable files.
+- Because there were a bunch of readable files, I needed to add more specifications and parameters.
+- `-size` is a flag (?) that customizes `find` to look for files with specific byte sizes. Above, I requested for files with a size of 1033 bytes.
+
+
+**Step 2: Attempt different approaches to identify the human-readable file**
 
 ## What I Learned
 
