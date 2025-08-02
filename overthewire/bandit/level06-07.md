@@ -32,14 +32,32 @@ total 20
 - Above, there are no files that are connected with this challenge.
 - Afterward, I messed around with `grep`. `grep` is a sophisticated version of `find` which insteads looks for specific patterns of data or information inside files. However, the challenge description didn't provide a pattern that I was looking for. It only provided file permissions.
 - At this point, I searched on Google: "How to navigate and read files on servers in Linux Command Line with find?" and hints on the Bandit Level
-- This sounds fourth-dimensional or meta. What I learned is that, apparently, when you're starting out in Bandit, you're set in a subdirectory. You're not even at the root! overthewire is like one big computer, and the home directory has all of its challenges: bandit, leviathan, and narnia. And you're supposed to find the password located somewhere on the server or machine??
-**Step 2: Explore one directory to understand the challenge scope**
+- This sounds fourth-dimensional or meta. What I learned is that, apparently, when you're starting out in Bandit, you're set in a subdirectory. You're not even at the root! overthewire is like one big computer, and the home directory has all of its challenges: bandit, leviathan, and narnia. And you're supposed to find the password located somewhere on the server or machine?? [explain this better please] or is the home directory the users?? I'm lost.
+- I need to use `find /` to use the root directory of overthewirelabs.org?
+
+**Step 2: Find the right file
 ```bash
-bandit5@bandit:~/inhere$ cd maybehere00
-bandit5@bandit:~/inhere/maybehere00$ ls
--file1  -file2  -file3  spaces file1  spaces file2  spaces file3
-bandit5@bandit:~/inhere/maybehere00$ cat ./-file1
-cat: ./-file1: No such file or directory
+bandit6@bandit:~$ find . -type f
+./.profile
+./.bashrc
+./.bash_logout
+bandit6@bandit:~$ find / -type f
+/opt/radare2/configure.hook
+/opt/radare2/autogen.sh
+/opt/radare2/config-user.mk.acr
+/opt/radare2/binr/preload/libr2.c
+/opt/radare2/binr/preload/trap-darwin-x86-32.asm
+/opt/radare2/binr/preload/demo.c
+/opt/radare2/binr/preload/alloc.c
+[thousands of more, various files]
+bandit6@bandit:~$ find / -type f -user bandit7 -group bandit6 -size 33c
+find: ‘/sys/kernel/tracing’: Permission denied
+find: ‘/sys/kernel/debug’: Permission denied
+find: ‘/sys/fs/pstore’: Permission denied
+find: ‘/sys/fs/bpf’: Permission denied
+find: ‘/tmp’: Permission denied
+find: ‘/run/udisks2’: Permission denied
+[a bunch of files with "Permission denied"]
 ```
 
 Being curious, I wanted to see what I would find in the first directory. After seeing multiple files in just one directory, it became clear that brute force checking each file individually would not be the most effective solution.
