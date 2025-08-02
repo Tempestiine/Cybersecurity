@@ -35,7 +35,7 @@ total 20
 - This sounds fourth-dimensional or meta. What I learned is that, apparently, when you're starting out in Bandit, you're set in a subdirectory. You're not even at the root! overthewire is like one big computer, and the home directory has all of its challenges: bandit, leviathan, and narnia. And you're supposed to find the password located somewhere on the server or machine?? [explain this better please] or is the home directory the users?? I'm lost.
 - I need to use `find /` to use the root directory of overthewirelabs.org?
 
-**Step 2: Find the right file
+**Step 2: Find the right file**
 ```bash
 bandit6@bandit:~$ find . -type f
 ./.profile
@@ -50,6 +50,9 @@ bandit6@bandit:~$ find / -type f
 /opt/radare2/binr/preload/demo.c
 /opt/radare2/binr/preload/alloc.c
 [thousands of more, various files]
+```
+
+```bash
 bandit6@bandit:~$ find / -type f -user bandit7 -group bandit6 -size 33c
 find: ‘/sys/kernel/tracing’: Permission denied
 find: ‘/sys/kernel/debug’: Permission denied
@@ -58,9 +61,12 @@ find: ‘/sys/fs/bpf’: Permission denied
 find: ‘/tmp’: Permission denied
 find: ‘/run/udisks2’: Permission denied
 [a bunch of files with "Permission denied"]
+bandit6@bandit:~$ find / -type f -user bandit7 -group bandit6 -size 33c | grep -v "Permission denied"
+[nearly identical output as previous command]
 ```
 
-Being curious, I wanted to see what I would find in the first directory. After seeing multiple files in just one directory, it became clear that brute force checking each file individually would not be the most effective solution.
+- Looking in the root directory worked, but I had a bunch of unnessary files.
+- When I specified it to what the challenge description wanted, I couldn't access a lot of the files. I tried 
 
 **Step 3: Use `find` with specific criteria**
 ```bash
