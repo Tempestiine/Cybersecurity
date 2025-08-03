@@ -110,7 +110,6 @@ I imagine you use grep to find specific text in files like passwords if you're h
 If you're looking for anything, sometimes, you need to look in the root directory?
 In hacking, you're bound to encounter errors. Don't let them cloud up your screen.
 passwords can be hidden anywhere, even in the most unconventional places.
-idk help me
 
 ## Key Takeaway
-you need to check everything and everywhere. do not trust bandit. idk. look at reddit.
+you need to check everything and everywhere. do not trust bandit. idk. look at reddit and quora.
