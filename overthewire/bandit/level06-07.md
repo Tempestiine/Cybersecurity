@@ -87,33 +87,30 @@ In shell scripting (like Bash), the > symbol redirects output of a command to a 
 
 /dev/null is a special device that deletes everything inside of it. Like a garbage collector. Haha java pun
 
+---
 
 **Step 3: Get the Password**
 ```bash
 bandit6@bandit:/var/lib/dpkg/info$ find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null
 /var/lib/dpkg/info/bandit7.password
+bandit6@bandit:/var/lib/dpkg/info$ cat /var/lib/dpkg/info/bandit7.password
+[password displayed]
 ```
-
-- `find` searches through the current working directory and all subdirectories for files
-- `-readable` is a flag that modifies the `find` command to look for human-readable files only
-- Because there were dozens of readable files, I needed to add more specific parameters to narrow down the search
-- `-size 1033c` is an option that customizes `find` to look for files with exactly 1033 bytes in size. The `c` stands for bytes (characters)
-- After solving the challenge independently, I compared my process with other hackers, who included the command `grep` and used pipes `|` to find the solution. I wasn't recommended those commands by Bandit for this level, but they seem just as useful.
 
 ## What I Learned
 
-### New Commands/Concepts
-1. **Advanced `find` command usage**: The `find` command can combine multiple criteria to efficiently locate specific files
-2. **File size specification**: The `-size` option with `c` suffix allows searching by exact byte count
-3. **Systematic searching**: Instead of manual checking, using multiple filters can quickly narrow down results from hundreds of files to just one
-4. **Command combination**: Multiple flags can work together to create precise search queries
+### New Commands/Concepts?
+1. How to use grep
+2. how to use find and how to access root directory from subdirectory
+3. what standard input, output, and errors mean and their differences
+4. how to use redirection.
 
-## Real-World Applications
-- **Digital forensics**: Investigators need to locate specific files among thousands based on criteria like size, type, and permissions when analyzing seized devices
-- **System administration**: When troubleshooting systems, administrators often need to find configuration files or logs that match specific characteristics
-- **Security auditing**: Security professionals search for files with unusual permissions, sizes, or types that might indicate compromise or misconfiguration
-- **Data management**: In large file systems, efficiently locating files with specific properties is essential for maintenance and organization
-- **Incident response**: During security incidents, quickly finding files that match attack indicators helps speed up investigation and containment
+## Real-World Applications?
+I imagine you use grep to find specific text in files like passwords if you're hacking.
+If you're looking for anything, sometimes, you need to look in the root directory?
+In hacking, you're bound to encounter errors. Don't let them cloud up your screen.
+passwords can be hidden anywhere, even in the most unconventional places.
+idk help me
 
 ## Key Takeaway
-Instead of manually checking hundreds of files, I learned to use the `find` command's filtering capabilities to narrow down results systematically. Often in cyber work, you need to locate specific files among massive datasets during investigations, audits, or incident response. Constructing precise search queries saves significant time and ensures thorough coverage.
+you need to check everything and everywhere. do not trust bandit. idk. look at reddit.
