@@ -1,4 +1,4 @@
-# [Bandit Level 6 → Level 7](https://overthewire.org/wargames/bandit/bandit6.html)
+# [Bandit Level 6 → Level 7](https://overthewire.org/wargames/bandit/bandit7.html)
 
 ## Challenge Description
 The password for the next level is stored somewhere on the server and has all of the following properties:
@@ -13,12 +13,13 @@ Commands you may need to solve this level:
 ## My Experience
 
 ### Initial Approach/Struggles
-Understanding the Challenge Description gave me a headache. When I first tried to find the file in the directory that I was situated in, there were no files. In addition, Bandit recommended the use of `grep`, which now seems like a red herring because I didn't use it.
+Understanding the challenge description gave me a headache. When I first tried to find the file in the directory I was currently in, there were no files that matched. The key phrase "somewhere on the server" was confusing.
+
+I realized I wasn't just looking in one directory anymore, but potentially anywhere on the entire system. Additionally, Bandit recommended using `grep`, which turned out to be a red herring since I didn't end up needing it for the main solution.
 
 ### Solution Process
 
-**Step 1: Find the right file**
-
+**Step 1: Check the current directory**
 ```bash
 bandit6@bandit:~$ ls -las
 total 20
@@ -28,14 +29,10 @@ total 20
 4 -rw-r--r--   1 root root 3851 Jul 28 18:47 .bashrc
 4 -rw-r--r--   1 root root  807 Mar 31  2024 .profile
 ```
+- As expected, there were no files in my home directory that matched the criteria
+- This confirmed I needed to search beyond just my current location
 
-- Above, there are no files that are connected with this challenge.
-- Afterward, I messed around with `grep`. `grep` is a sophisticated version of `find` which insteads looks for specific patterns of data or information inside files. However, the challenge description didn't provide a pattern that I was looking for. It only provided file permissions.
-- At this point, I searched on Google: "How to navigate and read files on servers in Linux Command Line with find?" and hints on the Bandit Level
-- This sounds fourth-dimensional or meta. What I learned is that, apparently, when you're starting out in Bandit, you're set in a subdirectory. You're not even at the root! overthewire is like one big computer, and the home directory has all of its challenges: bandit, leviathan, and narnia. And you're supposed to find the password located somewhere on the server or machine?? [explain this better please] or is the home directory the users?? I'm lost.
-- I need to use `find /` to use the root directory of overthewirelabs.org? oml
-
-**Step 2: Find the right file**
+**Step 2: Understanding the scope - searching the entire server**
 ```bash
 bandit6@bandit:~$ find . -type f
 ./.profile
@@ -45,71 +42,59 @@ bandit6@bandit:~$ find / -type f
 /opt/radare2/configure.hook
 /opt/radare2/autogen.sh
 /opt/radare2/config-user.mk.acr
-/opt/radare2/binr/preload/libr2.c
-/opt/radare2/binr/preload/trap-darwin-x86-32.asm
-/opt/radare2/binr/preload/demo.c
-/opt/radare2/binr/preload/alloc.c
-[thousands of more, various files]
+[thousands of files listed]
 ```
+- I realized that I was working in a subdirectory, not at the root of the server
+- The challenge meant searching the entire OverTheWire server, not just my user directory
+- Using `find /` searches from the root directory of the entire system
 
+**Step 3: Apply the specific criteria**
 ```bash
 bandit6@bandit:~$ find / -type f -user bandit7 -group bandit6 -size 33c
-find: ‘/sys/kernel/tracing’: Permission denied
-find: ‘/sys/kernel/debug’: Permission denied
-find: ‘/sys/fs/pstore’: Permission denied
-find: ‘/sys/fs/bpf’: Permission denied
-find: ‘/tmp’: Permission denied
-find: ‘/run/udisks2’: Permission denied
-[a bunch of files with "Permission denied"]
-bandit6@bandit:~$ find / -type f -user bandit7 -group bandit6 -size 33c | grep -v "Permission denied"
-[nearly identical output as previous command]
+find: '/sys/kernel/tracing': Permission denied
+find: '/sys/kernel/debug': Permission denied
+find: '/sys/fs/pstore': Permission denied
+find: '/sys/fs/bpf': Permission denied
+find: '/tmp': Permission denied
+[many more "Permission denied" errors]
 ```
+- When I specified the exact criteria from the challenge, I got lots of permission errors
+- These errors cluttered the output and made it hard to see any actual results
 
-- Looking in the root directory worked, but I had a bunch of unnessary files.
-- When I specified it to what the challenge description wanted, I couldn't access a lot of the files. I tried using `-v` flag to use the inverse of `grep` and to instead choose files without "Permission denied", but that didn't work.
-- I had to do a google search to find the answer on how to remove all of the Permissions denied.
-- Apparently, I need to add ```2>/dev/null``` to the end of the Linux command.
-
----
-
-Search up how to add tables in markdown
-0	stdin	Standard input
-1	stdout	Standard output
-2	stderr	Standard error output
-
-successful results to stdout (1)
-
-error messages (like "Permission denied") to stderr (2)
-
- and the arrow `>` means...
-
-In shell scripting (like Bash), the > symbol redirects output of a command to a file or another place, instead of printing it to the screen (your terminal).
-
-/dev/null is a special device that deletes everything inside of it. Like a garbage collector. Haha java pun
-
----
-
-**Step 3: Get the Password**
+**Step 4: Filter out permission errors**
 ```bash
-bandit6@bandit:/var/lib/dpkg/info$ find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null
+bandit6@bandit:~$ find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null
 /var/lib/dpkg/info/bandit7.password
-bandit6@bandit:/var/lib/dpkg/info$ cat /var/lib/dpkg/info/bandit7.password
+bandit6@bandit:~$ cat /var/lib/dpkg/info/bandit7.password
 [password displayed]
 ```
+- I had to Google how to remove the "Permission denied" messages
+- The solution was adding `2>/dev/null` to the end of the command
+- This redirects error messages (stderr) to `/dev/null`, which essentially discards them
 
 ## What I Learned
 
-### New Commands/Concepts?
-1. How to use grep
-2. how to use find and how to access root directory from subdirectory
-3. what standard input, output, and errors mean and their differences
-4. how to use redirection.
+### New Commands/Concepts
+1. **Server-wide file searching**: Using `find /` searches the entire server from the root directory
+2. **File ownership criteria**: The `-user` and `-group` flags let you search by file ownership
+3. **Error redirection**: `2>/dev/null` hides error messages by redirecting them to the null device
+4. **Standard streams**: Understanding stdin (0), stdout (1), and stderr (2) and how to redirect them
+5. **OverTheWire.org**: Realized that OverTheWire challenges can span the entire server, not just user directories. I can not trust Bandit.
 
-## Real-World Applications?
-I imagine you use grep to find specific text in files like passwords if you're hacking.
-If you're looking for anything, sometimes, you need to look in the root directory?
-In hacking, you're bound to encounter errors. Don't let them cloud up your screen.
-passwords can be hidden anywhere, even in the most unconventional places.
+### Key Technical Concepts
+- **Standard streams**: 
+  - `0` = stdin (standard input)
+  - `1` = stdout (standard output - successful results)
+  - `2` = stderr (standard error output - error messages)
+- **Redirection**: The `>` symbol redirects output to a file or device
+- **`/dev/null`**: A special device that discards everything sent to it (like a digital trash can)
+
+## Real-World Applications
+- **System administration**: Searching for files by ownership is crucial when investigating user activities or cleaning up after departed employees
+- **Security auditing**: Finding files owned by specific users or groups helps identify potential privilege escalation or unauthorized access
+- **Digital forensics**: Investigators often need to locate files across entire systems based on specific criteria like ownership, size, or timestamps
+- **Compliance monitoring**: Organizations need to track files owned by certain users or groups for regulatory compliance
+- **Error handling in scripts**: Using redirection to manage error output is essential for creating clean, professional automation scripts
 
 ## Key Takeaway
-you need to check everything and everywhere. do not trust bandit. idk. look at reddit and quora.
+This level taught me that cybersecurity work often involves searching through vast amounts of data systematically. Learning to construct precise search queries and handle error output professionally is essential when working with large systems. The skills I learned here about file ownership, system-wide searching, and error management will be fundamental as I progress to more security challenges.
