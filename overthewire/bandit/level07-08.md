@@ -24,27 +24,25 @@ millionth       [password displayed]
 ```
 
 - `strings` is a more complex version of `cat`. While `cat` prints out everything, `strings` only outputs printable characters in a file. Because many data files do not have printable characters, `strings` is more useful.
-- `|` is called a pipe. Imagine an assembly line, "a series of workers and machines in a factory," all connected by conveyor belts. `strings data.txt` is the first operation or machine, and the output of the first machine is transfered to the second operation or command `grep "millionth". Essentially, I'm telling Linux to gather printable characters from the data file and search for the word "millionth" within that selected population. Ironically, I got it from a website called Red Hats ([Ken Hess](https://www.redhat.com/en/blog/pipes-command-line-linux))
+- `|` is called a pipe. Imagine an assembly line, "a series of workers and machines in a factory," all connected by conveyor belts. `strings data.txt` is the first operation or machine, and the output of the first machine is transfered to the second operation or command `grep "millionth". Essentially, I'm telling Linux to gather printable characters from the data file and search for the word "millionth" within that selected population. ([Ken Hess](https://www.redhat.com/en/blog/pipes-command-line-linux))
 - As a result, the password was displayed next to the word `millionth`.
 
 ## What I Learned
 
 ### New Commands/Concepts
-
-### Key Technical Concepts
-- **Standard streams**: 
-  - `0` = stdin (standard input)
-  - `1` = stdout (standard output - successful results)
-  - `2` = stderr (standard error output - error messages)
-- **Redirection**: The `>` symbol redirects output to a file or device
-- **`/dev/null`**: A special device that discards everything sent to it (like a digital trash can)
+strings reads files
+grep scans files (but is it a new command?) It's best used with piping that's for sure.
+passwords can be hidden in data files
+piping allows me to be multifaceted with multiple commands?
 
 ## Real-World Applications
-- **System administration**: Searching for files by ownership is crucial when investigating user activities or cleaning up after departed employees
-- **Security auditing**: Finding files owned by specific users or groups helps identify potential privilege escalation or unauthorized access
-- **Digital forensics**: Investigators often need to locate files across entire systems based on specific criteria like ownership, size, or timestamps
-- **Compliance monitoring**: Organizations need to track files owned by certain users or groups for regulatory compliance
-- **Error handling in scripts**: Using redirection to manage error output is essential for creating clean, professional automation scripts
+what i imagine
+people can hide sensitive information within innocent looking files
+things can be encrypted or disguised in said files
+people have to be wary of what they download or install because files can contain anything
+investigators have to search everything, including files that appear unrelated.
 
-## Key Takeaway
-This level taught me that cybersecurity work often involves searching through vast amounts of data systematically. Learning to construct precise search queries and handle error output professionally is essential when working with large systems. The skills I learned here about file ownership, system-wide searching, and error management will be fundamental as I progress to more security challenges.
+## Key Takeaway ?
+Data files are now on my radar.
+cybersecurity involves legal breaches of privacy and thorough scanning?
+
