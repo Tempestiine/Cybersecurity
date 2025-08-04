@@ -1,12 +1,20 @@
 # Cybersecurity Learning Journey
 
-Documenting my path from beginner to cybersecurity professional through hands-on challenges and real learning.
+Documenting my path from beginner to cybersecurity professional through hands-on challenges.
 
 ---
 
 ## Who Am I?
 
-I'm Khai Pham, a CS student who's starting his cybersecurity journey. This repository will document my thought process when tackling problems and issues in the broad field of cybersecurity.
+I'm Khai Pham, a Computer Science student at Rice University (Class of 2029) passionate about cybersecurity. This repository showcases my progress in building technical skills and analytical thinking through practical challenges.
+
+## Why Cybersecurity?
+I’m drawn to cybersecurity’s blend of problem-solving and real-world impact. Whether it’s analyzing logs to detect intrusions or securing systems, I’m excited to develop skills that protect digital environments.
+
+## Goals
+- Develop a strong foundation in Linux, networking, and scripting for cybersecurity roles.  
+- Build a portfolio that demonstrates analytical thinking and technical proficiency.  
+- Prepare for internships by connecting academic challenges to real-world applications.
 
 ---
 
@@ -17,6 +25,8 @@ Starting with Linux fundamentals because they're the foundation of cybersecurity
 - Finding and analyzing files 
 - Understanding system behavior
 - Building problem-solving methodology
+
+---
 
 ## Current Repository Structure
 
@@ -30,25 +40,12 @@ Cybersecurity
 
 *More platforms will be added as I progress.*
 
-## What Makes This Different
-
-Instead of copying solutions, I'll document:
-- **Multiple ways** to solve each challenge
-- **What went wrong** and how I fixed it
-- **Real-world applications** of each technique
-- **Connections** between different concepts
-
-## My Approach
-
-Each writeup answers three questions:
-1. What did I learn?
-2. Why does this matter in cybersecurity?
-3. How would I use this technique again?
-
-This helps me build lasting knowledge instead of just completing challenges.
-
 ---
 
-## Goal
+## My Approach
+Each challenge writeup addresses:  
+- **What I Learned**: Key technical skills and concepts.  
+- **Why It Matters**: How the skills apply to cybersecurity (e.g., log analysis, incident response).  
+- **How I’ll Use It**: Practical applications for future challenges or real-world tasks.
 
-Build the analytical thinking and systematic approach that cybersecurity work requires. This repository tracks that development from day one.
+By documenting mistakes and solutions, I aim to build a systematic, reflective approach to problem-solving.
