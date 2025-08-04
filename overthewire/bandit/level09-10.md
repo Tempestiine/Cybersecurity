@@ -56,7 +56,7 @@ u5=R
 
 > **Specific Example**: A forensics analyst examining a suspected malware sample needs to find any embedded URLs or domain names. They extract readable strings from the file and search for web-related patterns.
 
-```bash
+> ```bash
 strings suspicious_file.exe | grep -E "(http|www|\.com|\.net)"
 ```
 
