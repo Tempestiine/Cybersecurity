@@ -1,7 +1,7 @@
 # [Bandit Level 9 → Level 10](https://overthewire.org/wargames/bandit/bandit10.html)
 
 ## Challenge Description
-The password for the next level is stored in the file data.txt in one of the few human-readable strings, preceded by several '=' characters.
+The password for the next level is stored in the file data.txt, which contains base64 encoded data
 
 Commands you may need to solve this level:
 
@@ -19,39 +19,42 @@ Commands you may need to solve this level:
 ## My Experience
 
 ### Initial Approach/Struggles
-This challenge was easier than I thought. Given that data files likely contain binary data mixed with readable strings, I need to filter for lines containing the '=' pattern.
+I used `base64` to decode the file, and I got the password to the next level
 
 ### Solution Process
-**Find the password with `grep`** ✓
+**Decode the file** ✓
 ```bash
-bandit9@bandit:~$ strings data.txt | grep "="
-Pw=h
-========== the
-C%m=
-y7{1Z=
-========== passwordb
-#[q?=p
-F========== is;o|
-@[W=
-p?e=    v
- K=r
-V9V=]
-U========== [password displayed]
-u5=R
+bandit10@bandit:~$ strings data.txt
+VGhlIHBhc3N3b3JkIGlzIGR0UjE3M2ZaS2IwUlJzREZTR3NnMlJXbnBOVmozcVJyCg==
+bandit10@bandit:~$ base64 -d data.txt
+The password is dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
 ```
-- The `strings` command extracted all human-readable text from the binary file
-- `grep "="` filtered for lines containing the equals sign, as specified in the challenge
-- Above, the results read, "the password is [password]."
+
+- `base64` is used to encode binary data as printable text. It's like hexcode or morse code!
+- Some common characteristics of base64  may include...Uppercase letters (A-Z) Lowercase letters (a-z Digits (0-9) Equals sign (=) for padding at the end.
+
+- I decoded `data.txt`, and I found the answer.
 
 ---
 
 ## What I Learned
 
 ### New Commands/Concepts
+Decoding.
+Base64
+how to identify it
+
+
+(OLD)
 1. **Pattern Recognition**: Learning to visually scan command output for meaningful patterns (in this case, the sentence structure "the password is...")
 
 ## Real-World Applications
+wouldn't people try to hide sensitive information in base64?
+or what if you wanted to send over or collect information, and base64 is the only way because regular information or text is too BIG? or small?
+or what if you're trying to send secret messages like in i think its called cryptography? you're workihg for tye cia.
+you encode and decode to save memory and space?
 
+(OLD)
 **Digital Forensics**: Investigators extract readable content from memory dumps or corrupted files to find evidence like passwords, usernames, or file paths.
 
 > **Specific Example**: A forensics analyst examining a suspected malware sample needs to find any embedded URLs or domain names. They extract readable strings from the file and search for web-related patterns.
@@ -61,4 +64,7 @@ strings suspicious_file.exe | grep -E "(http|www|\.com|\.net)"
 ```
 
 ## Key Takeaway
+files that seem like jargon or can't be read may be misleading. i can not overlook files? decoding is an essential skill?
+
+(old)
 Combining `strings` with pattern matching tools like `grep` can make a powerful tool for finding a needle in a giant, digital haystack. In the real world, everything is not neatly put in text files with ASCII values.
