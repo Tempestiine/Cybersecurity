@@ -24,7 +24,7 @@ millionth       [password displayed]
 ```
 
 - `strings` is a more complex version of `cat`. While `cat` prints out everything, `strings` only outputs printable characters in a file. Because many data files do not have printable characters, `strings` is more useful.
-- `|` is called a pipe. Imagine an assembly line, "a series of workers and machines in a factory," all connected by conveyor belts. `strings data.txt` is the first operation or machine, and the output of the first machine is transfered to the second operation or command `grep "millionth". Essentially, I'm telling Linux to gather printable characters from the data file and search for the word "millionth" within that selected population.
+- `|` is called a pipe. Imagine an assembly line, "a series of workers and machines in a factory," all connected by conveyor belts. `strings data.txt` is the first operation or machine, and the output of the first machine is transfered to the second operation or command `grep "millionth". Essentially, I'm telling Linux to gather printable characters from the data file and search for the word "millionth" within that selected population ([Ken Hess](https://www.redhat.com/en/blog/pipes-command-line-linux))
 - As a result, the password was displayed next to the word `millionth`.
 
 ## What I Learned
