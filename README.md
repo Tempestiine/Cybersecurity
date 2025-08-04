@@ -2,8 +2,6 @@
 
 Documenting my path from beginner to cybersecurity professional through hands-on challenges.
 
----
-
 ## Who Am I?
 
 I'm Khai Pham, a Computer Science student at Rice University (Class of 2029) passionate about cybersecurity. This repository showcases my progress in building technical skills and analytical thinking through practical challenges.
