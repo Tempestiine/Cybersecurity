@@ -4,9 +4,7 @@
 The password for the next level is stored in the file data.txt in one of the few human-readable strings, preceded by several '=' characters.
 
 Commands you may need to solve this level:
-`man` `grep` `sort` `uniq` `strings` `base64` `tr` `tar` `gzip` `bzip2` `xxd`
 
-## Command Reference Table
 | Command | What It Does |
 |---------|--------------|
 | `strings` | Extracts human-readable text from binary files |
