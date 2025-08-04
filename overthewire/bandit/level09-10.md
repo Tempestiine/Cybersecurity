@@ -14,6 +14,8 @@ Commands you may need to solve this level:
 | `uniq` | Filters out duplicate adjacent lines |
 | `base64` | Encodes and decodes base64 data |
 
+---
+
 ## My Experience
 
 ### Initial Approach/Struggles
@@ -41,6 +43,8 @@ u5=R
 - `grep "="` filtered for lines containing the equals sign, as specified in the challenge
 - Above, the results read, "the password is [password]."
 
+---
+
 ## What I Learned
 
 ### New Commands/Concepts
@@ -50,9 +54,9 @@ u5=R
 
 **Digital Forensics**: Investigators extract readable content from memory dumps or corrupted files to find evidence like passwords, usernames, or file paths.
 
-> **Specific Example**: A forensics analyst examining a suspected malware sample needs to find any embedded URLs or domain names:
+> **Specific Example**: A forensics analyst examining a suspected malware sample needs to find any embedded URLs or domain names. They extract readable strings from the file and search for web-related patterns.
+
 ```bash
-# Extract readable strings from malware binary, then search for web-related patterns
 strings suspicious_file.exe | grep -E "(http|www|\.com|\.net)"
 ```
 
