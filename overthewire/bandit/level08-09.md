@@ -1,7 +1,7 @@
-# [Bandit Level 7 → Level 8](https://overthewire.org/wargames/bandit/bandit8.html)
+# [Bandit Level 7 → Level 8](https://overthewire.org/wargames/bandit/bandit9.html)
 
 ## Challenge Description
-The password for the next level is stored in the file `data.txt` next to the word `millionth`.
+The password for the next level is stored in the file data.txt and is the only line of text that occurs only once
 
 Commands you may need to solve this level:
 `man` `grep` `sort` `uniq` `strings` `base64` `tr` `tar` `gzip` `bzip2` `xxd`
@@ -9,42 +9,53 @@ Commands you may need to solve this level:
 ## My Experience
 
 ### Initial Approach/Struggles
-This challenge was a breath of fresh air compared to the last one. The task seemed straightforward: scan the data file, search for the word `millionth`, and find the password next to it. However, I wanted to make sure I used the right approach rather than just scrolling through a potentially large file.
+This challenge was a bit hard because `uniq` wants a specific kind of input.
 
 ### Solution Process
 
 **Step 1: Explore the available tools and examine the file**
 
 ```bash
-bandit7@bandit:~$ man strings
-bandit7@bandit:~$ man grep
-bandit7@bandit:~$ ls
+bandit8@bandit:~$ ls
 data.txt
-bandit7@bandit:~$ strings data.txt | grep "millionth"
-millionth       [password displayed]
+bandit8@bandit:~$ man uniq
+bandit8@bandit:~$ strings data.txt |  uniq -u
+XufULFiOZWAHsAxw0bIUQGrZZFyBRlZL
+r9fBFHH41cMCOBt7J0FzTMu6qhmyg1ju
+ZO25yUpC8UtUCb00m8nV0IOd8jAMVbKG
+[fake passwords]
 ```
 
-- I used `man` to understand the available, possible tools before diving into the problem
-- `strings` is a more sophisticated version of `cat`. While `cat` prints out everything in a file, `strings` only outputs printable characters. Since many data files contain non-printable binary data, `strings` is more useful for extracting readable text
-- `|` is called a pipe. Think of it like an assembly line--"a series of workers and machines in a factory," all connected by conveyor belts. The output from `strings data.txt` (the first operation or machine) gets transferred directly to `grep "millionth"` (the second operation or machine). Essentially, I'm telling Linux to extract printable characters from the data file and then search for the word "millionth" within that filtered content ([Ken Hess](https://www.redhat.com/en/blog/pipes-command-line-linux))
-- Boom, the password was displayed next to the word `millionth`!
+```bash
+bandit8@bandit:~$ man sort
+bandit8@bandit:~$ strings data.txt | sort -u
+066lBi8GrHITCQmvVAgMOdGGXrXhYmmO
+1nd1ZEdrz8EVgTAhESS7YsDyI1E4PtOc
+20XnpTGhJBb02GfFqE4sjppp3x8Blgm9
+[fake passwords]
+```
 
-## What I Learned
+- `uniq` identifies unique lines of code in text. I fed printable characters to `uniq -u`, but the command didn't work the way I thought it would.
+- Checking sort, I saw that it had the `-u` and `--unique` flag option, and I thought it would sort and output unique lines for me; however, I got an identical result as `uniq -u`. Reading the Ubuntu manual page for `uniq`, I discovered that I may need "to sort the input first..."
+
+```bash
+bandit8@bandit:~$ strings data.txt | sort | uniq -u
+[password displayed]
+```
+
+
+## What I Learned (Possibly?)
 
 ### New Commands/Concepts
-1. **`strings` command**: Extracts printable characters from files, especially useful for binary or mixed-content files
-2. **Piping with `|`**: Allows chaining commands together so the output of one becomes the input of the next
-3. **`grep` for pattern matching**: Searches for specific text patterns within input streams
-4. **`man` pages**: Using manual pages to understand command options before implementation
-5. **Command combinations**: How different utilities can work together to solve complex problems efficiently
+1. How to find unique text
+2. How to use sort
 
-## Real-World Applications
-- **Malware analysis**: Security professionals use `strings` to extract readable text from suspicious binary files, looking for URLs, file paths, or other indicators
-- **Digital forensics**: Investigators search through data files and disk images for specific keywords, usernames, or other evidence using similar techniques
-- **Log analysis**: System administrators pipe log data through multiple filters to find specific events or patterns during troubleshooting
-- **Data recovery**: When files are corrupted, `strings` can help extract readable content that might otherwise be inaccessible
-- **Incident response**: During security breaches, responders search through large datasets for specific indicators of compromise
-- **Compliance auditing**: Organizations search through data files for sensitive information like credit card numbers or personal identifiers
+## Real-World Applications?
+looking for unique data for data analysis?
+looking for unique system entries or people using networks and stuff like that?
+maybe, you want to sort programs by how much cpu or gpu memory they take up and you want to see the biggest stuff first
+maybe you sort by file type and size.
+maybe hackers have multiple files that are identical to slow down your time, so you use uniq to find distinct files and not redudant ones.
 
 ## Key Takeaway
-This level taught combining simple commands with piping can efficiently process large amounts of data with basic commands. Data files that appear innocent can contain valuable information, and I must have the right tools if I want to extract and search through data systematically.
+??
