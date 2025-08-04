@@ -10,9 +10,9 @@ Commands you may need to solve this level:
 | `strings` | Extracts human-readable text from binary files |
 | `grep` | Searches for patterns in text |
 | `man` | Shows manual pages for commands |
-| `sort` | Arranges lines alphabetically/numerically |
+| `sort` | Arranges lines, text, and data |
 | `uniq` | Filters out duplicate adjacent lines |
-| `base64` | Encodes/decodes base64 data |
+| `base64` | Encodes and decodes base64 data |
 
 ## My Experience
 
