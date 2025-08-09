@@ -1,7 +1,7 @@
 # [Bandit Level 11 → Level 12](https://overthewire.org/wargames/bandit/bandit12.html)
 
 ## Challenge Description
-The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions
+The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions.
 
 Commands you may need to solve this level:
 
@@ -19,16 +19,17 @@ Commands you may need to solve this level:
 | `bzip2` | Compresses and decompresses files (better compression) |
 | `xxd` | Creates hex dumps or reverses them |
 
-Helpful Reading Material
+**Helpful Reading Material**
 
 [Rot13 on Wikipedia](https://en.wikipedia.org/wiki/ROT13)
 
 ## My Experience
 
 ### Initial Approach/Struggles
-I was struggling with using the `tr` command properly, so I referred to the reading material given by Bandit. Having read wikipedia, all I needed to do is to read the file and translate the characters within it.
+I was struggling with using the `tr` command properly, so I referred to the reading material given by Bandit. Having read the Wikipedia, all I needed to do was read the file and translate the characters within it using ROT13.
 
 ### Solution Process
+
 **Translate the file** ✓
 
 ```bash
@@ -38,39 +39,34 @@ bandit11@bandit:~$ strings data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
 The password is [password displayed]
 ```
 
-- `tr` is a tool to translate characters, insert, or delete characters. This is important for cryptography.
-- After translating the text in `data.txt` by 13 characters, I got the password.
+- `tr` is a tool to translate, insert, or delete characters. This is important for cryptography
+- After translating the text in `data.txt` by 13 characters using ROT13, I got the password in plain English
 
 ```bash
 bandit11@bandit:~$ strings data.txt | tr 'a-zA-Z' 'n-za-mN-ZA-M'
 ```
 
-- This command also works too and gives the same solution
+- This alternative command also works and gives the same solution
 
 ## What I Learned
 
-### New Commands/Concepts?
-
-cryptography? people may try to send hidden messages to others within files.
-`tr`
-- how to translate characters.
-- **Rot13 Cipher**
-- **Character ranges in tr**: I understand how to specify ranges like 'A-Z' and use it depending on the case
-
-> Specific Example:
-
-```bash
-echo: "lasdjfsjfiosdfjsofjsiodf" | tr 'a-zA-Z' 'n-za-mN-ZA-M'
-```
+### New Commands/Concepts
+1. **ROT13 Cipher**: A simple cipher that shifts each letter 13 positions in the alphabet
+2. **`tr` Command**: Translates, squeezes, or deletes characters from input
+3. **Character Ranges**: Understanding how to specify ranges like 'A-Z' and 'a-z' for both uppercase and lowercase letters
 
 ## Real-World Applications
-You can intercept code. Imagine if you were in the CIA or FBI. very cool.
-This was used during the Cold War, I bet.
-insert some malicious code into files on purpose to gain access to someone's computer or run some hidden commands with 'tr', maybe with that php code.
-insert and delete code to ruin the message or text in the hidden file with `tr`
+**Malware Obfuscation**: Attackers use simple ciphers like ROT13 to hide malicious code from basic detection systems that only scan for readable strings.
 
-[insert specific example]
+**Data Exfiltration**: Security analysts might find encoded data in logs or files that attackers used to hide stolen information
 
+> **Specific Example**: A security analyst finds suspicious text in a log file that looks scrambled. They suspect ROT13 encoding and decode it:
+
+```bash
+# Decode suspicious ROT13 text
+echo "frperg_onpxqbbe_freire" | tr 'a-zA-Z' 'n-za-mN-ZA-M'
+# Output: secret_backdoor_server
+```
 
 ## Key Takeaway
-You can translate to read content that's encrypted with `tr`. This is important for cybersecurity if you're working with the GRC. Ciphers are used today because they're very quick, and they're investigated by professionals.
+Basic ciphers are still used today because they're quick to implement and can trick automated scanning tools. Understanding character translation with `tr` is fundamental for cybersecurity professionals who need to decode data during investigations.
