@@ -52,6 +52,7 @@ The password is dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
 **Web Security**: Security analysts decode base64-encoded data in HTTP requests to find hidden attack payloads or sensitive information leakage.
 
 > **Specific Example**: A security analyst investigating a suspicious web request finds base64 data in a POST parameter. They need to decode it to see if it contains malicious code:
+
 ```bash
 echo "PD9waHAgZXZhbCgkX1BPU1RbJ2NtZCddKTs/Pg==" | base64 -d
 # Output: <?php eval($_POST['cmd']);?>  (malicious PHP code!)
