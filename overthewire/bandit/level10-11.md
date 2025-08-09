@@ -54,9 +54,13 @@ The password is dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
 > **Specific Example**: A security analyst investigating a suspicious web request finds base64 data in a POST parameter. They need to decode it to see if it contains malicious code:
 
 ```bash
-echo "PD9waHAgZXZhbCgkX1BPU1RbJ2NtZCddKTs/Pg==" | base64 -d
-# Output: <?php eval($_POST['cmd']);?>  (malicious PHP code!)
+echo "[base64_string_that_is_php_code]" | base64 -d
+# Output: <?php [malicious code] ?>
 ```
+
+*My heart dropped. Looking at this file's history on GitHub, you can see I used a realistic version of php code above. When I copied this online file onto my local computer, Windows Security detected a threat! The irony, from studying cybersecurity to potentially shooting myself in the foot with this current markdown file, is not lost on me. The "threat" in this current markdown file needed to quarantined and blocked.*
+
+*That was REAL malicious code, but it's harmless since the code is in a markdown file and not on a live web server.*
 
 This same technique helps with:
 - **Email Security**: Decoding base64 attachments that might contain malware
