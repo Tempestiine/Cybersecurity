@@ -65,4 +65,4 @@ insert and delete code to ruin the message or text in the hidden file with `tr`
 
 
 ## Key Takeaway
-Files that seem like random jargon or can't be read may be misleading. Attackers can use encoding to hide malicious content. Never overlook files that appear to be gibberish without first checking if they might be encoded data.
+You can translate to read content that's encrypted with `tr`. This is important for cybersecurity if you're working with the GRC.
