@@ -5,17 +5,19 @@ The password for the next level is stored in the file data.txt, which contains b
 
 Commands you may need to solve this level:
 
-`man` `grep` `sort` `uniq` `strings` `base64` `tr` `tar` `gzip` `bzip2` `xxd`
-
 ## Command Reference Table
 | Command | What It Does |
 |---------|--------------|
-| `base64` | Encodes and decodes base64 data |
-| `strings` | Extracts human-readable text from binary files |
 | `grep` | Searches for patterns in text |
-| `man` | Shows manual pages for commands |
 | `sort` | Arranges lines, text, and data |
 | `uniq` | Filters out duplicate adjacent lines |
+| `strings` | Extracts human-readable text from binary files |
+| `base64` | Encodes and decodes base64 data |
+| `tr` | Translates or deletes characters |
+| `tar` | Archives and extracts files |
+| `gzip` | Compresses and decompresses files |
+| `bzip2` | Compresses and decompresses files (better compression) |
+| `xxd` | Creates hex dumps or reverses them |
 
 ## My Experience
 
