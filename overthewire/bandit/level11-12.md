@@ -26,50 +26,43 @@ Helpful Reading Material
 ## My Experience
 
 ### Initial Approach/Struggles
-I used `base64` to decode the file, and I got the password to the next level. This was pretty straightforward.
+I was struggling with using the `tr` command properly, so I referred to the reading material given by Bandit. Having read wikipedia, all I needed to do is to read the file and translate the characters within it.
 
 ### Solution Process
-**Decode the file** ✓
+**Translate the file** ✓
 
 ```bash
-bandit10@bandit:~$ strings data.txt
-VGhlIHBhc3N3b3JkIGlzIGR0UjE3M2ZaS2IwUlJzREZTR3NnMlJXbnBOVmozcVJyCg==
-bandit10@bandit:~$ base64 -d data.txt
-The password is dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+bandit11@bandit:~$ cat data.txt
+Gur cnffjbeq vf 7k16JArUVv5LxVuJfsSVdbbtaHGlw9D4
+bandit11@bandit:~$ strings data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+The password is [password displayed]
 ```
 
-- `base64` is used to encode binary data as printable text. It's like hexcode or morse code!
-- Some common characteristics of base64 include uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the equals sign (=) for padding at the end
-- I decoded `data.txt` with the `-d` flag, and I found the answer in plain English
+- `tr` is a tool to translate characters, insert, or delete characters. This is important for cryptography.
+- After translating the text in `data.txt` by 13 characters, I got the password.
+
+```bash
+bandit11@bandit:~$ strings data.txt | tr 'a-zA-Z' 'n-za-mN-ZA-M'
+```
+
+- This command also works too and gives the same solution
 
 ## What I Learned
 
-### New Commands/Concepts
-1. **Base64 Encoding/Decoding**: A method to convert binary data into ASCII text using 64 printable characters
-2. **Pattern Recognition**: Learning to identify base64 by its characteristic format
-3. **Data Obfuscation**: Understanding that readable data can be disguised in encoded formats
-4. **Command Flags**: Using `base64 -d` to decode (decrypt) versus `base64` alone to encode
+### New Commands/Concepts?
+
+cryptography? people may try to send hidden messages to others within files.
+`tr`
+- how to translate characters.
 
 ## Real-World Applications
-**Malware Analysis**: Attackers often hide malicious payloads in base64 to bypass basic security filters that only scan for readable text.
+You can intercept code. Imagine if you were in the CIA or FBI. very cool.
+This was used during the Cold War, I bet.
+insert some malicious code into files on purpose to gain access to someone's computer or run some hidden commands with 'tr', maybe with that php code.
+insert and delete code to ruin the message or text in the hidden file with `tr`
 
-**Web Security**: Security analysts decode base64-encoded data in HTTP requests to find hidden attack payloads or sensitive information leakage.
+[insert specific example]
 
-> **Specific Example**: A security analyst investigating a suspicious web request finds base64 data in a POST parameter. They need to decode it to see if it contains malicious code:
-
-```bash
-echo "[base64_string_that_is_php_code]" | base64 -d
-# Output: <?php [malicious code] ?>
-```
-
-*My heart dropped. Looking at this file's history on GitHub, you can see I used a realistic version of php code above. When I copied this online file onto my local computer, Windows Security detected a threat! The irony, from studying cybersecurity to potentially shooting myself in the foot with this current markdown file, is not lost on me. The "threat" in this current markdown file needed to quarantined and blocked.*
-
-*That was REAL malicious code, but it's harmless since the code is in a markdown file and not on a live web server.*
-
-This same technique helps with:
-- **Email Security**: Decoding base64 attachments that might contain malware
-- **Network Forensics**: Analyzing encoded data in network traffic captures
-- **Incident Response**: Revealing hidden commands or data in system logs
 
 ## Key Takeaway
 Files that seem like random jargon or can't be read may be misleading. Attackers can use encoding to hide malicious content. Never overlook files that appear to be gibberish without first checking if they might be encoded data.
