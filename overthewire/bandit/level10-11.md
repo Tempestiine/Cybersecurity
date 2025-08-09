@@ -50,7 +50,7 @@ The password is dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
 **Malware Analysis**: Attackers often hide malicious payloads in base64 to bypass basic security filters that only scan for readable text.
 
 **Web Security**: Security analysts decode base64-encoded data in HTTP requests to find hidden attack payloads or sensitive information leakage.
-
+\n
 
 > **Specific Example**: A security analyst investigating a suspicious web request finds base64 data in a POST parameter. They need to decode it to see if it contains malicious code:
 
