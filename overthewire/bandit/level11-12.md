@@ -1,7 +1,7 @@
-# [Bandit Level 10 → Level 11](https://overthewire.org/wargames/bandit/bandit11.html)
+# [Bandit Level 11 → Level 12](https://overthewire.org/wargames/bandit/bandit12.html)
 
 ## Challenge Description
-The password for the next level is stored in the file data.txt, which contains base64 encoded data.
+The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions
 
 Commands you may need to solve this level:
 
@@ -18,6 +18,9 @@ Commands you may need to solve this level:
 | `gzip` | Compresses and decompresses files |
 | `bzip2` | Compresses and decompresses files (better compression) |
 | `xxd` | Creates hex dumps or reverses them |
+
+Helpful Reading Material
+[Rot13 on Wikipedia](https://en.wikipedia.org/wiki/ROT13)
 
 ## My Experience
 
