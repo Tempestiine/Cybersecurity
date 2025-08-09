@@ -54,6 +54,14 @@ bandit11@bandit:~$ strings data.txt | tr 'a-zA-Z' 'n-za-mN-ZA-M'
 cryptography? people may try to send hidden messages to others within files.
 `tr`
 - how to translate characters.
+- **Rot13 Cipher**
+- **Character ranges in tr**: I understand how to specify ranges like 'A-Z' and use it depending on the case
+
+> Specific Example:
+
+```bash
+echo: "lasdjfsjfiosdfjsofjsiodf" | tr 'a-zA-Z' 'n-za-mN-ZA-M'
+```
 
 ## Real-World Applications
 You can intercept code. Imagine if you were in the CIA or FBI. very cool.
@@ -65,4 +73,4 @@ insert and delete code to ruin the message or text in the hidden file with `tr`
 
 
 ## Key Takeaway
-You can translate to read content that's encrypted with `tr`. This is important for cybersecurity if you're working with the GRC.
+You can translate to read content that's encrypted with `tr`. This is important for cybersecurity if you're working with the GRC. Ciphers are used today because they're very quick, and they're investigated by professionals.
